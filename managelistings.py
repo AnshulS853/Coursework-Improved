@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 
 import sqlite3
+from datetime import datetime, timedelta
 
 class manageListings(QDialog):
     def __init__(self,app,uid):
@@ -42,12 +43,37 @@ class manageListings(QDialog):
         self.confirmtoast.setText("Deleting \n listingID: " + str(self.currentListingID))
         self.confirmchoice.clicked.connect(self.deleterecord)
 
+    def calcend_date(self,duration,durationunits):
+        if durationunits == "Days":
+            self.end_date = datetime.now().date() + timedelta(days=duration)
+        elif durationunits == "Months":
+            self.end_date = datetime.now().date() + timedelta(months=duration)
+        elif durationunits == "Years":
+            self.end_date = datetime.now().date() + timedelta(years=duration)
+
+    def checkduration(self, duration):
+        try:
+            duration = int(duration)
+            if duration < 1:
+                return
+            else:
+                self.calcend_date(duration, self.durationunits.currentText())
+                # print(self.end_date)
+                return True
+        except:
+            self.confirmtoast.setText("Enter valid duration\n for listingID: " + str(self.currentListingID) + "\n to be Active")
+            return
+
     def makelistingactive(self):
         self.mode = "ChangeList"
         self.fetchlistingID()
-        self.confirmtoast.setText("Making \n listingID: " + str(self.currentListingID) + "\nActive")
-        self.activev = True
-        self.confirmchoice.clicked.connect(self.updatelisting)
+        self.confirmtoast.setText("Enter valid duration\n for listingID: " + str(self.currentListingID) + "\n to be Active")
+        self.confirmchoice.clicked.connect(self.confirmactive)
+    def confirmactive(self):
+        if (self.checkduration(self.durationfield.text()))==True:
+            self.activev = True
+            self.cur.execute('UPDATE listings SET dateofend=? WHERE listingID=?', (self.end_date, self.currentListingID))
+            self.updatelisting()
 
     def makelistinginactive(self):
         self.mode = "ChangeList"

@@ -375,7 +375,7 @@ Category</string>
    <widget class="QComboBox" name="deliveryoption">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>700</x>
       <y>600</y>
       <width>142</width>
       <height>25</height>
@@ -474,7 +474,7 @@ color:rgb(255, 255, 255);</string>
    <widget class="QComboBox" name="format">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>120</x>
       <y>600</y>
       <width>142</width>
       <height>25</height>
