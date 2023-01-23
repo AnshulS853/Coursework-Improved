@@ -17,7 +17,15 @@ class creationScreen(QDialog):
         self.admin = admin
         self.goback.clicked.connect(self.gobacktomenu)
         self.continuepage.clicked.connect(self.createwindow)
+        self.format.currentIndexChanged.connect(self.checkFormat)
 
+    def checkFormat(self):
+        if self.format.currentText() == "Auction":
+            self.quantityfield.setEnabled(False)
+            self.quantityfield.setText("1 (Auction)")
+        else:
+            self.quantityfield.setEnabled(True)
+            self.quantityfield.setText("1")
     def gobacktomenu(self):
         if self.admin:
             self.close()
@@ -44,6 +52,12 @@ class creationScreen(QDialog):
             else:
                 i += 1
         return True
+
+    def quantity(self,quantity):
+        if (type(self.quantity) is not int) or int(self.quantity==0):
+            self.error.setText("Quantity must be an Integer")
+        else:
+            quantity = int(self.quantityfield)
 
     def calcend_date(self,duration,durationunits):
         if durationunits == "Days":
