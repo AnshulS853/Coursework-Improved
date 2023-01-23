@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>950</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>950</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="bgwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1201</width>
+     <height>801</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#bgwidget{
+background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379, y2:0.977, stop:0 rgba(209, 107, 165, 255), stop:1 rgba(128, 0, 32, 255));}</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>40</y>
+      <width>651</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 72pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Create your listing</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="continuepage">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>710</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+background-color: rgb(230, 230, 250);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Continue</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>170</y>
+      <width>35</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Title</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>230</y>
+      <width>76</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Condition</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="category">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>170</y>
+      <width>237</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 127);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Select a Category</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Appliances</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Apps &amp; Games</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Arts, Crafts, &amp; Sewing</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Automotive Parts &amp; Accessories</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Baby</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Beauty &amp; Personal Care</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Books</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CDs &amp; Vinyl</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cell Phones &amp; Accessories</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Clothing, Shoes and Jewelry</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Collectibles &amp; Fine Art</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Computers</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Electronics</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Garden &amp; Outdoor</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Grocery &amp; Gourmet Food</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Handmade</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Health, Household &amp; Baby Care</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Home &amp; Kitchen</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Industrial &amp; Scientific</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Luggage &amp; Travel Gear</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Movies &amp; TV</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Musical Instruments</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Office Products</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Sports &amp; Outdoors</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tools &amp; Home Improvement</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Toys &amp; Games</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Video Games</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>260</y>
+      <width>89</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Item 
+Description</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>570</y>
+      <width>55</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Format</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>570</y>
+      <width>68</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Duration</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>563</x>
+      <y>570</y>
+      <width>81</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Price GBP</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>160</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Product
+Category</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="acceptcondition">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>650</y>
+      <width>741</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>I acknowledge that 15% will be deducted from gross revenue as fees after the item is sold</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>570</y>
+      <width>63</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>Delivery</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="deliveryoption">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>600</y>
+      <width>141</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 127);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Select an Option</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Delivery</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Collection only</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="condition">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>230</y>
+      <width>141</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 127);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Select an Option</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>New</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Used</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Refurbished</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="title">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>190</y>
+      <width>371</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="itemdesc">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>310</y>
+      <width>711</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="format">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>600</y>
+      <width>141</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 127);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Select an Option</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Buy Now</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Auction</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="durationfield">
+    <property name="geometry">
+     <rect>
+      <x>311</x>
+      <y>600</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="pricefield">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>600</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>680</y>
+      <width>361</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;; color:red;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="durationunits">
+    <property name="geometry">
+     <rect>
+      <x>427</x>
+      <y>603</y>
+      <width>81</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 127);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Days</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Weeks</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Months</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="goback">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>81</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>&lt; Back</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>title</tabstop>
+  <tabstop>category</tabstop>
+  <tabstop>condition</tabstop>
+  <tabstop>itemdesc</tabstop>
+  <tabstop>format</tabstop>
+  <tabstop>durationfield</tabstop>
+  <tabstop>durationunits</tabstop>
+  <tabstop>pricefield</tabstop>
+  <tabstop>deliveryoption</tabstop>
+  <tabstop>acceptcondition</tabstop>
+  <tabstop>continuepage</tabstop>
+ </tabstops>
+ <resources>
+  <include location="placeholder.qrc"/>
+ </resources>
+ <connections/>
+</ui>
