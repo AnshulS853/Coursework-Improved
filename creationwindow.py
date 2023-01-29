@@ -202,9 +202,10 @@ class creationScreen(QDialog):
                 dateofend,
                 price,
                 delivery,
+                quantity,
                 active,
                 sellerID)
-                VALUES (?,?,?,?,?,?,?,?,?,?)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)
                 ''', (
                 self.title.text(),
                 self.itemdesc.text(),
