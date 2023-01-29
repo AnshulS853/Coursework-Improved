@@ -21,9 +21,6 @@ class creationScreen(QDialog):
         self.continuepage.clicked.connect(self.createwindow)
         self.format.currentIndexChanged.connect(self.checkFormat)
 
-        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
-        self.cur = self.conn.cursor()
-
     def checkFormat(self):
         if self.format.currentText() == "Auction":
             self.quantityfield.setEnabled(False)
@@ -35,17 +32,22 @@ class creationScreen(QDialog):
     def checkQuantity(self):
         if self.format.currentText() == "Auction":
             self.quantity = 1
+            print("1")
             return True
         else:
             self.quantity = self.quantityfield.text()
+            print("2")
             try:
                 self.quantity = int(self.quantity)
                 if self.quantity < 0:
+                    print("3")
                     return
                 else:
+                    print("4")
                     return True
             except:
                 self.error.setText("Enter quantity as a positive integer")
+                print("5")
                 return
     def gobacktomenu(self):
         if self.admin:
@@ -173,26 +175,29 @@ class creationScreen(QDialog):
 
         if (self.acceptconditions() is True) and (self.checkprice(self.pricefield.text()) is True) and (
                 self.checkduration(self.durationfield.text()) is True) and (self.selectoption(selectoptions) is True) and (
-                self.emptyfield(selectfields) is True) and (self.durationlimit(self.durationunits.currentText(),self.duration) is True):
+                self.emptyfield(selectfields) is True) and (self.durationlimit(self.durationunits.currentText(),self.duration is True) and (self.checkQuantity() is True)):
 
-            # listing_info = (self.title.text(),
-            #                 self.itemdesc.text(),
-            #                 self.category.currentText(),
-            #                 self.condition.currentText(),
-            #                 self.format.currentText(),
-            #                 self.end_date,
-            #                 self.price,
-            #                 self.quantity,
-            #                 self.deliveryoption.currentText(),
-            #                 True,
-            #                 self.userID)
+            listing_info = (self.title.text(),
+                            self.itemdesc.text(),
+                            self.category.currentText(),
+                            self.condition.currentText(),
+                            self.format.currentText(),
+                            self.end_date,
+                            self.price,
+                            self.quantity,
+                            self.deliveryoption.currentText(),
+                            True,
+                            self.userID)
             #in order of title,description,category,condition,format,end date,price,delivery,quantity, Listing Active,sellerID
 
-            # print(listing_info)
+            print(listing_info)
             # x = databaseClass(self.userID)
             # x.insertlisting(listing_info)
 
-            self.cur.execute('''
+            conn = sqlite3.connect("auc_database.db", isolation_level=None)
+            cur = conn.cursor()
+
+            cur.execute('''
                 INSERT INTO listings
                 (title,
                 description,
@@ -218,7 +223,7 @@ class creationScreen(QDialog):
                 self.deliveryoption.currentText(),
                 True,
                 self.userID))
-            self.conn.close()
+            conn.close()
 
 
             if self.admin:

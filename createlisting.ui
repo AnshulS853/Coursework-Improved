@@ -344,7 +344,7 @@ Category</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>660</y>
+      <y>652</y>
       <width>877</width>
       <height>29</height>
      </rect>
@@ -534,7 +534,7 @@ color:rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>680</y>
+      <y>687</y>
       <width>361</width>
       <height>20</height>
      </rect>
