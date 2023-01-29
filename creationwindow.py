@@ -16,7 +16,7 @@ class creationScreen(QDialog):
         self.app = app
         self.userID = uid
         self.admin = admin
-        self.quantity = 1
+        self.itemquantity = 1
         self.goback.clicked.connect(self.gobacktomenu)
         self.continuepage.clicked.connect(self.createwindow)
         self.format.currentIndexChanged.connect(self.checkFormat)
@@ -31,23 +31,18 @@ class creationScreen(QDialog):
 
     def checkQuantity(self):
         if self.format.currentText() == "Auction":
-            self.quantity = 1
-            print("1")
+            self.itemquantity = 1
             return True
         else:
-            self.quantity = self.quantityfield.text()
-            print("2")
+            self.itemquantity = self.quantityfield.text()
             try:
-                self.quantity = int(self.quantity)
-                if self.quantity < 0:
-                    print("3")
+                self.itemquantity = int(self.itemquantity)
+                if self.itemquantity < 0:
                     return
                 else:
-                    print("4")
                     return True
             except:
                 self.error.setText("Enter quantity as a positive integer")
-                print("5")
                 return
     def gobacktomenu(self):
         if self.admin:
@@ -75,12 +70,6 @@ class creationScreen(QDialog):
             else:
                 i += 1
         return True
-
-    def quantity(self,quantity):
-        if (type(self.quantity) is not int) or int(self.quantity==0):
-            self.error.setText("Quantity must be an Integer")
-        else:
-            quantity = int(self.quantityfield)
 
     def calcend_date(self,duration,durationunits):
         if durationunits == "Days":
@@ -155,7 +144,7 @@ class creationScreen(QDialog):
     def createwindow(self):
         selectoptions = [self.category.currentText(),self.category.currentText(),self.condition.currentText(),
                          self.format.currentText(),self.durationunits.currentText(),self.deliveryoption.currentText()]
-        selectfields = [self.durationfield.text(),self.title.text(),self.itemdesc.text(),self.quantity.text()]
+        selectfields = [self.durationfield.text(),self.title.text(),self.itemdesc.text(),self.quantityfield.text()]
 
         # self.selectoption(self.category.currentText())
         # self.selectoption(self.condition.currentText())
@@ -177,20 +166,20 @@ class creationScreen(QDialog):
                 self.checkduration(self.durationfield.text()) is True) and (self.selectoption(selectoptions) is True) and (
                 self.emptyfield(selectfields) is True) and (self.durationlimit(self.durationunits.currentText(),self.duration is True) and (self.checkQuantity() is True)):
 
-            listing_info = (self.title.text(),
-                            self.itemdesc.text(),
-                            self.category.currentText(),
-                            self.condition.currentText(),
-                            self.format.currentText(),
-                            self.end_date,
-                            self.price,
-                            self.quantity,
-                            self.deliveryoption.currentText(),
-                            True,
-                            self.userID)
-            #in order of title,description,category,condition,format,end date,price,delivery,quantity, Listing Active,sellerID
-
-            print(listing_info)
+            # listing_info = (self.title.text(),
+            #                 self.itemdesc.text(),
+            #                 self.category.currentText(),
+            #                 self.condition.currentText(),
+            #                 self.format.currentText(),
+            #                 self.end_date,
+            #                 self.price,
+            #                 self.deliveryoption.currentText(),
+            #                 self.itemquantity,
+            #                 True,
+            #                 self.userID)
+            # #in order of title,description,category,condition,format,end date,price,delivery,quantity, Listing Active,sellerID
+            #
+            # print(listing_info)
             # x = databaseClass(self.userID)
             # x.insertlisting(listing_info)
 
@@ -219,8 +208,8 @@ class creationScreen(QDialog):
                 self.format.currentText(),
                 self.end_date,
                 self.price,
-                self.quantity,
                 self.deliveryoption.currentText(),
+                self.itemquantity,
                 True,
                 self.userID))
             conn.close()
