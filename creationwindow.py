@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 from databasefunction import databaseClass
 import locale
+import sqlite3
 
 
 class creationScreen(QDialog):
@@ -15,9 +16,13 @@ class creationScreen(QDialog):
         self.app = app
         self.userID = uid
         self.admin = admin
+        self.quantity = 1
         self.goback.clicked.connect(self.gobacktomenu)
         self.continuepage.clicked.connect(self.createwindow)
         self.format.currentIndexChanged.connect(self.checkFormat)
+
+        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
+        self.cur = self.conn.cursor()
 
     def checkFormat(self):
         if self.format.currentText() == "Auction":
@@ -26,6 +31,22 @@ class creationScreen(QDialog):
         else:
             self.quantityfield.setEnabled(True)
             self.quantityfield.setText("1")
+
+    def checkQuantity(self):
+        if self.format.currentText() == "Auction":
+            self.quantity = 1
+            return True
+        else:
+            self.quantity = self.quantityfield.text()
+            try:
+                self.quantity = int(self.quantity)
+                if self.quantity < 0:
+                    return
+                else:
+                    return True
+            except:
+                self.error.setText("Enter quantity as a positive integer")
+                return
     def gobacktomenu(self):
         if self.admin:
             self.close()
@@ -132,7 +153,7 @@ class creationScreen(QDialog):
     def createwindow(self):
         selectoptions = [self.category.currentText(),self.category.currentText(),self.condition.currentText(),
                          self.format.currentText(),self.durationunits.currentText(),self.deliveryoption.currentText()]
-        selectfields = [self.durationfield.text(),self.title.text(),self.itemdesc.text()]
+        selectfields = [self.durationfield.text(),self.title.text(),self.itemdesc.text(),self.quantity.text()]
 
         # self.selectoption(self.category.currentText())
         # self.selectoption(self.condition.currentText())
@@ -154,21 +175,51 @@ class creationScreen(QDialog):
                 self.checkduration(self.durationfield.text()) is True) and (self.selectoption(selectoptions) is True) and (
                 self.emptyfield(selectfields) is True) and (self.durationlimit(self.durationunits.currentText(),self.duration) is True):
 
-            listing_info = (self.title.text(),
-                            self.itemdesc.text(),
-                            self.category.currentText(),
-                            self.condition.currentText(),
-                            self.format.currentText(),
-                            self.end_date,
-                            self.price,
-                            self.deliveryoption.currentText(),
-                            True,
-                            self.userID)
-            #in order of title,description,category,condition,format,end date,price,delivery,Listing Active,sellerID
+            # listing_info = (self.title.text(),
+            #                 self.itemdesc.text(),
+            #                 self.category.currentText(),
+            #                 self.condition.currentText(),
+            #                 self.format.currentText(),
+            #                 self.end_date,
+            #                 self.price,
+            #                 self.quantity,
+            #                 self.deliveryoption.currentText(),
+            #                 True,
+            #                 self.userID)
+            #in order of title,description,category,condition,format,end date,price,delivery,quantity, Listing Active,sellerID
 
-            print(listing_info)
-            x = databaseClass(self.userID)
-            x.insertlisting(listing_info)
+            # print(listing_info)
+            # x = databaseClass(self.userID)
+            # x.insertlisting(listing_info)
+
+            self.cur.execute('''
+                INSERT INTO listings
+                (title,
+                description,
+                category,
+                condition,
+                format,
+                dateofend,
+                price,
+                delivery,
+                active,
+                sellerID)
+                VALUES (?,?,?,?,?,?,?,?,?,?)
+                ''', (
+                self.title.text(),
+                self.itemdesc.text(),
+                self.category.currentText(),
+                self.condition.currentText(),
+                self.format.currentText(),
+                self.end_date,
+                self.price,
+                self.quantity,
+                self.deliveryoption.currentText(),
+                True,
+                self.userID))
+            self.conn.close()
+
+
             if self.admin:
                 self.close()
                 self.app.callAdminWindow(self.userID)
