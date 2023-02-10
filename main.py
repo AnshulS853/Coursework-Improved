@@ -14,5 +14,3 @@ if __name__ == "__main__":
     callApp = appClass(app)
     callApp.callWelcomeScreen()
     sys.exit(app.exec_())
-
-#testcommit
