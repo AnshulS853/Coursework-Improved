@@ -42,7 +42,7 @@ class refreshLists:
     def updateauctions(self, list):
         for i in list:
             currentlistingID = i
-            self.cur.execute('''SELECT bidderID,highestBid FROM auctions WHERE listingID = ?''',(currentlistingID,))
+            self.cur.execute('''SELECT bidderID,highestbid FROM auctions WHERE listingID = ?''',(currentlistingID,))
             result = self.cur.fetchall()
             if result:
                 result = result[0]

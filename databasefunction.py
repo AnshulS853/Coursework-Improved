@@ -66,7 +66,7 @@ class databaseClass:
             INSERT INTO auctions
             (listingID,
             highestBid,
-            bidDate,
+            biddate,
             bidderID)
             VALUES (?,?,?,?)
             ''',(bid[0],bid[1],bid[2],self.userID))
@@ -75,8 +75,8 @@ class databaseClass:
     def updatebid(self,bid):
         self.cur.execute('''
             UPDATE auctions
-            SET highestBid = ?,
-            bidDate = ?,
+            SET highestbid = ?,
+            biddate = ?,
             bidderID = ?
             WHERE listingID = ?
             ''',(bid[1],bid[2],self.userID,bid[0]))

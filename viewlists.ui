@@ -157,7 +157,7 @@ background-color: rgb(230, 230, 250);
 font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>VIew Listing</string>
+     <string>View Listing</string>
     </property>
    </widget>
    <widget class="QPushButton" name="goback">

@@ -122,7 +122,7 @@ class auctionBids(QDialog):
         self.deliveryfield.setText(self.result[8])
         self.deliverylocation.setText("Item is located near\n" + str(self.postcode))
 
-        self.cur.execute('SELECT highestBid, bidDate FROM auctions WHERE listingID = ?', (self.listingID,))
+        self.cur.execute('SELECT highestbid, biddate FROM auctions WHERE listingID = ?', (self.listingID,))
         bidDetails = self.cur.fetchall()
         if not bidDetails:
             self.new = True
