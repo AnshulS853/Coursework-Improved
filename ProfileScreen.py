@@ -6,7 +6,6 @@ import sqlite3
 import re
 
 from datetime import date
-from databasefunction import databaseClass
 
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
@@ -136,15 +135,27 @@ class FillProfileScreen(QDialog):
         # widget.setCurrentIndex(widget.currentIndex() + 1)
 
         dob = self.dob.date().toPyDate()
-        if self.checkuserage(dob) is True:
-            user_info = (self.firstname,
-                         self.lastname,
-                         email,
-                         dob,
-                         int(gender))
 
-            x = databaseClass(self.userID)
-            x.insertuserinfo(user_info)
+        if self.checkuserage(dob):
+
+            conn = sqlite3.connect("auc_database.db", isolation_level=None)
+            cur = conn.cursor()
+            cur.execute('''
+                UPDATE users
+                SET firstname=?,
+                lastname=?,
+                email=?,
+                dob=?,
+                gender=?
+                WHERE userID = (?)
+            ''',(self.firstname,
+                self.lastname,
+                email,
+                dob,
+                int(gender),
+                self.userID
+                ))
+            conn.close()
 
             self.close()
             self.app.callAddressScreen()
