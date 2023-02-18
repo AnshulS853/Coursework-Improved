@@ -40,6 +40,7 @@ class viewListings(QDialog):
             self.close()
             self.app.callMainWindow(self.userID)
 
+
     def fetchlistingID(self):
         row = self.vlistingstable.currentRow()
         self.currentListingID = int(self.vlistingstable.item(row, 0).text())

@@ -10,7 +10,6 @@ from databasefunction import databaseClass
 
 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
-
 class FillProfileScreen(QDialog):
     def __init__(self, app, uid, cu, admin):
         super(FillProfileScreen, self).__init__()
