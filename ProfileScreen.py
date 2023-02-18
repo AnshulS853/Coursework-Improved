@@ -78,7 +78,7 @@ class FillProfileScreen(QDialog):
             return
 
         if len(self.lastname) > 12 or self.checknumeric(self.lastname) == True:
-            self.firstnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
+            self.lastnameerror.setText("Your lastname must be less than 12 characters and cannot be alphanumeric")
             return
 
     def validate_email(self,email):
