@@ -39,8 +39,8 @@ class appClass():
 
     def callProfileScreen(self,userID,check=False,admin=False):
         self.userID = userID
-        self.checkadmin = admin
         self.checkupdate = check
+        self.checkadmin = admin
         self.profilewindow = FillProfileScreen(self,self.userID,self.checkupdate,self.checkadmin)
         self.profilewindow.show()
 
