@@ -188,7 +188,7 @@ color:rgb(255, 255, 255);</string>
      <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
-     <string>Postcode (No Space)</string>
+     <string>Postcode</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="postcode">

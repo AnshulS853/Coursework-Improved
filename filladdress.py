@@ -119,7 +119,6 @@
 #                  self.close()
 #                  self.app.callMainWindow(self.userID,admin)
 
-
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QDialog
 
@@ -131,7 +130,7 @@ from databasefunction import databaseClass
 
 class FillAddress(QDialog):
     def __init__(self, app, uid, check, admin):
-        super().__init__()
+        super(FillAddress, self).__init__()
         loadUi("address.ui", self)
         self.app = app
         self.userID = uid
@@ -154,22 +153,25 @@ class FillAddress(QDialog):
             self.app.callProfileScreen(self.userID, self.checkupdate, self.checkadmin)
 
     def goskip(self):
-        if self.checkupdate and self.checkadmin:
-            self.close()
-            self.app.callAdminWindow(self.userID, self.checkadmin)
-        elif self.checkupdate:
-            self.close()
-            self.app.callMainWindow(self.userID, self.checkadmin)
+        if self.checkupdate:
+            if self.checkadmin:
+                self.close()
+                self.app.callAdminWindow(self.userID, self.checkadmin)
+            else:
+                self.close()
+                self.app.callMainWindow(self.userID, self.checkadmin)
 
     def validate_postcode(self, pc):
-        pc = pc.strip()
-        if not pc:
+        pc = pc.replace(" ", "")  # remove spaces
+        if len(pc) == 0:
             self.postcodeerror.setText("Please enter a postcode")
             return False
-        pattern = re.compile("^([A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][A-Z]{2}|[A-Z]{1,2}[0-9R][0-9A-Z]?[0-9][A-Z]{2})$")
+
+        pattern = re.compile(r"^[A-Z]{1,2}\d{1,2}[A-Z]{0,2}\d[A-Z]{2}$")
         if not pattern.match(pc):
             self.postcodeerror.setText("This is an invalid UK postcode")
             return False
+
         return True
 
     def saveaddress(self):
@@ -182,38 +184,44 @@ class FillAddress(QDialog):
             self.addressfield1.text(),
             self.addressfield2.text(),
             postcode,
-            self.county.text(),
+            self.county.text()
         )
 
-        with sqlite3.connect("auc_database.db") as conn:
+        with sqlite3.connect("auc_database.db", isolation_level=None) as conn:
             cur = conn.cursor()
 
-            cur.execute("SELECT COUNT(postcode) FROM address WHERE postcode=?", (postcode,))
-            countpostcode = cur.fetchone()[0]
-            cur.execute("SELECT COUNT(houseno) FROM address WHERE houseno=?", (user_address[0],))
-            counthouseno = cur.fetchone()[0]
-
-            if countpostcode != 0 and counthouseno != 0:
-                cur.execute(
-                    "SELECT addressID FROM address where houseno=? AND postcode=?",
-                    (user_address[0], postcode),
-                )
-                self.addressID = cur.fetchone()[0]
+            cur.execute(
+                'SELECT addressID FROM address WHERE houseno=? AND postcode=?',
+                (user_address[0], user_address[3])
+            )
+            result = cur.fetchone()
+            if result:
+                self.addressID = result[0]
             else:
                 x = databaseClass(self.userID)
                 self.addressID = x.insertaddress(user_address)
 
             if not self.checkupdate:
-                cur.execute("INSERT INTO usad (userID,addressID) VALUES (?,?)", (self.userID, self.addressID))
+                cur.execute(
+                    'INSERT INTO usad (userID,addressID) VALUES (?,?)',
+                    (self.userID, self.addressID)
+                )
             else:
-                cur.execute("UPDATE usad SET addressID = ? WHERE userID = ?", (self.addressID, self.userID))
+                cur.execute(
+                    'UPDATE usad SET addressID = ? WHERE userID = ?',
+                    (self.addressID, self.userID)
+                )
 
-            cur.execute("SELECT admin FROM users WHERE userID=?", (self.userID,))
-            admin = cur.fetchone()
-
-            if admin[0]:
-                self.close()
-                self.app.callAdminWindow(self.userID, admin)
-            else:
-                self.close()
-                self.app.callMainWindow(self.userID, admin)
+            try:
+                cur.execute('SELECT admin FROM users WHERE userID=?', (self.userID,))
+                admin = cur.fetchone()[0]
+                if admin:
+                    self.close()
+                    self.app.callAdminWindow(self.userID, admin)
+                else:
+                    self.close()
+                    self.app.callMainWindow(self.userID, admin)
+            except Exception as e:
+                print(f"Error: {e}")
+            finally:
+                cur.close()
