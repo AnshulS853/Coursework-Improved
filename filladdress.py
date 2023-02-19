@@ -77,8 +77,16 @@ class FillAddress(QDialog):
             if result:
                 self.addressID = result[0]
             else:
-                x = databaseClass(self.userID)
-                self.addressID = x.insertaddress(user_address)
+                cur.execute('''
+                    INSERT INTO address
+                    (houseno,
+                    addfield1,
+                    addfield2,
+                    postcode,
+                    county)
+                    VALUES (?,?,?,?,?)
+                    ''', (user_address[0], user_address[1], user_address[2], user_address[3], user_address[4]))
+                self.addressID = cur.lastrowid
 
             if not self.checkupdate:
                 cur.execute(
@@ -86,6 +94,13 @@ class FillAddress(QDialog):
                     (self.userID, self.addressID)
                 )
             else:
+                cur.execute('SELECT addressID FROM usad WHERE userID = ?',
+                            (self.userID,)
+                )
+                oldaddressID = cur.fetchone()
+                cur.execute('DELETE FROM address WHERE addressID = ?',
+                            oldaddressID
+                )
                 cur.execute(
                     'UPDATE usad SET addressID = ? WHERE userID = ?',
                     (self.addressID, self.userID)
