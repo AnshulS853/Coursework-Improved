@@ -406,7 +406,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <rect>
       <x>660</x>
       <y>228</y>
-      <width>142</width>
+      <width>251</width>
       <height>25</height>
      </rect>
     </property>
@@ -616,7 +616,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
      <rect>
       <x>660</x>
       <y>270</y>
-      <width>121</width>
+      <width>171</width>
       <height>31</height>
      </rect>
     </property>

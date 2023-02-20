@@ -40,7 +40,6 @@ class viewListings(QDialog):
             self.close()
             self.app.callMainWindow(self.userID)
 
-
     def fetchlistingID(self):
         row = self.vlistingstable.currentRow()
         self.currentListingID = int(self.vlistingstable.item(row, 0).text())
@@ -53,7 +52,7 @@ class viewListings(QDialog):
 
     def updatepreferences(self):
         # self.isselected = False
-        self.query = 'SELECT listingID,title,price,condition,dateofend,format,delivery FROM listings WHERE active=1'
+        self.query = 'SELECT listingID,title,price,condition,dateofend,format,delivery,quantity FROM listings WHERE active=1'
         self.setpreferences()
         # self.number = 0
         # self.check = True
@@ -127,5 +126,5 @@ class viewListings(QDialog):
         self.vlistingstable.setColumnHidden(0, True)
 
         header = self.vlistingstable.horizontalHeader()
-        for i in range(6):
+        for i in range(7):
             header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)

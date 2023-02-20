@@ -42,9 +42,9 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
     <property name="geometry">
      <rect>
       <x>193</x>
-      <y>60</y>
-      <width>430</width>
-      <height>85</height>
+      <y>30</y>
+      <width>516</width>
+      <height>116</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -58,9 +58,9 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>130</y>
-      <width>221</width>
-      <height>41</height>
+      <y>140</y>
+      <width>258</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -75,7 +75,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      <rect>
       <x>20</x>
       <y>180</y>
-      <width>701</width>
+      <width>801</width>
       <height>591</height>
      </rect>
     </property>
@@ -120,12 +120,17 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
       <string>Delivery</string>
      </property>
     </column>
+    <column>
+     <property name="text">
+      <string>Quantity</string>
+     </property>
+    </column>
    </widget>
    <widget class="QLabel" name="confirmtoast">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>570</y>
+      <x>905</x>
+      <y>550</y>
       <width>201</width>
       <height>131</height>
      </rect>
@@ -145,7 +150,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QPushButton" name="gotoview">
     <property name="geometry">
      <rect>
-      <x>900</x>
+      <x>940</x>
       <y>700</y>
       <width>141</width>
       <height>51</height>
@@ -180,8 +185,8 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
    <widget class="QComboBox" name="category">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>317</y>
+      <x>910</x>
+      <y>210</y>
       <width>191</width>
       <height>26</height>
      </rect>
@@ -334,8 +339,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QComboBox" name="condition">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>317</y>
+      <x>910</x>
+      <y>280</y>
       <width>191</width>
       <height>26</height>
      </rect>
@@ -368,8 +373,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QComboBox" name="format">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>407</y>
+      <x>910</x>
+      <y>417</y>
       <width>191</width>
       <height>26</height>
      </rect>
@@ -397,8 +402,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QComboBox" name="deliveryoption">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>407</y>
+      <x>910</x>
+      <y>350</y>
       <width>191</width>
       <height>26</height>
      </rect>
@@ -426,10 +431,10 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>180</y>
-      <width>219</width>
-      <height>29</height>
+      <x>865</x>
+      <y>130</y>
+      <width>274</width>
+      <height>39</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -442,10 +447,10 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>287</y>
-      <width>134</width>
-      <height>19</height>
+      <x>930</x>
+      <y>180</y>
+      <width>162</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -458,10 +463,10 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>1030</x>
-      <y>291</y>
-      <width>76</width>
-      <height>19</height>
+      <x>960</x>
+      <y>254</y>
+      <width>88</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -474,10 +479,10 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>380</y>
-      <width>55</width>
-      <height>19</height>
+      <x>970</x>
+      <y>390</y>
+      <width>66</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -490,10 +495,10 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>380</y>
-      <width>63</width>
-      <height>19</height>
+      <x>960</x>
+      <y>323</y>
+      <width>74</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -506,10 +511,10 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="updatepref">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>480</y>
+      <x>930</x>
+      <y>470</y>
       <width>151</width>
-      <height>51</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -518,7 +523,8 @@ background-color: rgb(230, 230, 250);
 font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Update Preferences</string>
+     <string>Update
+Preferences</string>
     </property>
    </widget>
   </widget>
