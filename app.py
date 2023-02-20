@@ -45,7 +45,6 @@ class appClass():
         self.profilewindow.show()
 
     def callAddressScreen(self):
-        # print(self.userID)
         self.window = FillAddress(self,self.userID,self.checkupdate,self.checkadmin)
         self.window.show()
 

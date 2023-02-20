@@ -9,7 +9,6 @@ class viewListDetails(QDialog):
     def __init__(self, app, lid, uid, admin):
         super(viewListDetails, self).__init__()
         loadUi("listdetails.ui", self)
-        # connecting buttons to functions when clicked
         self.app = app
         self.admin = admin
         self.userID = uid
