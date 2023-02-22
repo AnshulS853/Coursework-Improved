@@ -78,9 +78,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>556</y>
-      <width>161</width>
-      <height>41</height>
+      <y>566</y>
+      <width>181</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -93,10 +93,10 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>50</x>
       <y>70</y>
-      <width>391</width>
-      <height>71</height>
+      <width>463</width>
+      <height>116</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -109,10 +109,10 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="greetuser">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>180</y>
-      <width>361</width>
-      <height>41</height>
+      <x>103</x>
+      <y>200</y>
+      <width>368</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -165,9 +165,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>200</y>
-      <width>221</width>
-      <height>41</height>
+      <y>230</y>
+      <width>258</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">

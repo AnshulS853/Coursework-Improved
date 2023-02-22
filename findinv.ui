@@ -41,10 +41,10 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>60</y>
-      <width>564</width>
-      <height>85</height>
+      <x>120</x>
+      <y>50</y>
+      <width>576</width>
+      <height>116</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -76,7 +76,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QPushButton" name="view">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>770</x>
       <y>450</y>
       <width>141</width>
       <height>51</height>

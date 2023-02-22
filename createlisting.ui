@@ -91,7 +91,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>510</x>
       <y>228</y>
       <width>88</width>
       <height>25</height>
@@ -107,9 +107,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QComboBox" name="category">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>610</x>
       <y>180</y>
-      <width>250</width>
+      <width>221</width>
       <height>25</height>
      </rect>
     </property>
@@ -326,7 +326,7 @@ Description</string>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>510</x>
       <y>170</y>
       <width>83</width>
       <height>50</height>
@@ -404,9 +404,9 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QComboBox" name="condition">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>610</x>
       <y>228</y>
-      <width>251</width>
+      <width>221</width>
       <height>25</height>
      </rect>
     </property>
@@ -598,7 +598,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="quantitylabel">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>510</x>
       <y>270</y>
       <width>79</width>
       <height>25</height>
@@ -614,9 +614,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
    <widget class="QLineEdit" name="quantityfield">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>610</x>
       <y>270</y>
-      <width>171</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>
