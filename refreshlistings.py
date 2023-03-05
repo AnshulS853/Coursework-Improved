@@ -1,3 +1,5 @@
+# REWRITE FILE
+
 import sqlite3
 
 class refreshLists:
@@ -47,18 +49,89 @@ class refreshLists:
             if result:
                 result = result[0]
                 self.cur.execute('''
-                                INSERT INTO invoice
-                                (listingID,
-                                buyerID,
-                                total,
-                                purchasedate)
-                                VALUES (?,?,?,DATE('now'))
-                                ''',(currentlistingID,result[0],result[1]))
+                                INSERT INTO basket
+                                (userID,
+                                listingID,
+                                quantity,
+                                purchased,
+                                creationdate)
+                                VALUES (?,?,1,1,DATE('now'))
+                                ''',(result[0],currentlistingID))
+                basketID = self.cur.lastrowid
 
-            self.cur.execute('''
-                            UPDATE listings
-                            SET active=0
-                            WHERE listingID = (?)
-                            ''', (currentlistingID,))
+
+                ##Fetch buyer's address
+                self.cur.execute('SELECT addressID FROM usad WHERE userID = ?',(result[0],))
+                buyerAddressID = self.cur.fetchone()[0]
+                self.cur.execute('SELECT * FROM address WHERE addressID = ?',(buyerAddressID,))
+                buyerAddress = self.cur.fetchall()[0]
+
+                # concatenate first two indexes with a space
+                first_part = buyerAddress[1] + ' ' + buyerAddress[2]
+                # concatenate the rest of the indexes with a new line
+                second_part = '\n'.join(buyerAddress[3:])
+                # concatenate the two parts and store in a new variable
+                s_buyerAddress = f"{first_part}\n{second_part}"
+                # print the concatenated address
+                print(s_buyerAddress)
+
+                ##Fetch seller's address
+                self.cur.execute('SELECT sellerID FROM listings WHERE listingID = ?',(currentlistingID,))
+                sellerID = self.cur.fetchone()[0]
+                self.cur.execute('SELECT addressID FROM usad WHERE userID = ?',(sellerID,))
+                sellerAddressID = self.cur.fetchone()[0]
+                self.cur.execute('SELECT * FROM address WHERE addressID = ?',(sellerAddressID,))
+                sellerAddress = self.cur.fetchall()[0]
+
+                # concatenate first two indexes with a space
+                first_part = sellerAddress[1] + ' ' + sellerAddress[2]
+                # concatenate the rest of the indexes with a new line
+                second_part = '\n'.join(sellerAddress[3:])
+                # concatenate the two parts and store in a new variable
+                s_sellerAddress = f"{first_part}\n{second_part}"
+                # print the concatenated address
+                print(s_sellerAddress)
+
+
+
+
+                self.cur.execute('''
+                                INSERT INTO invoice
+                                (couponID,
+                                buyerID,
+                                purchasedate,
+                                buyeraddress,
+                                selleraddress)
+                                VALUES (NULL,?,DATE('now'),?,?)
+                                ''',(result[0],s_buyerAddress,s_sellerAddress))
+                invoiceID = self.cur.lastrowid
+
+
+                self.cur.execute('''
+                                INSERT INTO binv
+                                (basketID,invoiceID)
+                                VALUES (?,?)
+                                ''',(basketID,invoiceID))
+
+            #
+            #     self.cur.execute('''
+            #                     SELECT basketID
+            #                     FROM basket
+            #                     WHERE userID = ? AND listingID = ?
+            #     ''',(userID,currentlistingID))
+            #
+            #
+            #     self.cur.execute('''
+            #                     INSERT INTO binv
+            #                     (buyerID,
+            #                     invoiceID)
+            #                     VALUES (?,?)
+            #                     ''',(currentlistingID,result[0],result[1]))
+            #
+            # self.cur.execute('''
+            #                 UPDATE listings
+            #                 SET active=0
+            #                 WHERE listingID = (?)
+            #                 ''', (currentlistingID,))
 
 
