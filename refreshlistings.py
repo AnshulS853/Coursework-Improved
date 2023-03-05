@@ -73,7 +73,6 @@ class refreshLists:
                 # concatenate the two parts and store in a new variable
                 s_buyerAddress = f"{first_part}\n{second_part}"
                 # print the concatenated address
-                print(s_buyerAddress)
 
                 ##Fetch seller's address
                 self.cur.execute('SELECT sellerID FROM listings WHERE listingID = ?',(currentlistingID,))
@@ -90,7 +89,6 @@ class refreshLists:
                 # concatenate the two parts and store in a new variable
                 s_sellerAddress = f"{first_part}\n{second_part}"
                 # print the concatenated address
-                print(s_sellerAddress)
 
 
 
@@ -113,7 +111,7 @@ class refreshLists:
                                 VALUES (?,?)
                                 ''',(basketID,invoiceID))
 
-            #
+
             #     self.cur.execute('''
             #                     SELECT basketID
             #                     FROM basket
