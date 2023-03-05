@@ -1,5 +1,3 @@
-# REWRITE FILE
-
 import sqlite3
 
 class refreshLists:
@@ -111,25 +109,8 @@ class refreshLists:
                                 VALUES (?,?)
                                 ''',(basketID,invoiceID))
 
-
-            #     self.cur.execute('''
-            #                     SELECT basketID
-            #                     FROM basket
-            #                     WHERE userID = ? AND listingID = ?
-            #     ''',(userID,currentlistingID))
-            #
-            #
-            #     self.cur.execute('''
-            #                     INSERT INTO binv
-            #                     (buyerID,
-            #                     invoiceID)
-            #                     VALUES (?,?)
-            #                     ''',(currentlistingID,result[0],result[1]))
-            #
-            # self.cur.execute('''
-            #                 UPDATE listings
-            #                 SET active=0
-            #                 WHERE listingID = (?)
-            #                 ''', (currentlistingID,))
-
-
+                self.cur.execute('''
+                                UPDATE listings
+                                SET active=0
+                                WHERE listingID = (?)
+                                ''', (currentlistingID,))
