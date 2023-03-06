@@ -54,7 +54,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      <string>My Basket</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="itemstable">
+   <widget class="QTableWidget" name="btable">
     <property name="geometry">
      <rect>
       <x>20</x>

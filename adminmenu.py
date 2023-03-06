@@ -106,6 +106,7 @@ class adminmenu(QDialog):
         self.admin = True
         self.welcometoast()
 
+        self.gotobasket.clicked.connect(lambda: self.view_basket())
         self.gotocreate.clicked.connect(lambda: self.create_listing())
         self.gotoview.clicked.connect(lambda: self.view_listings())
         self.gotoupdateacc.clicked.connect(lambda: self.update_account())
@@ -131,6 +132,10 @@ class adminmenu(QDialog):
             self.greetuser.setText(f"Good Afternoon {firstname} :)")
         else:
             self.greetuser.setText(f"Good Evening {firstname} :)")
+
+    def view_basket(self):
+        self.close()
+        self.app.callViewBasket(self.userID,self.admin)
 
     def create_listing(self):
         self.close()

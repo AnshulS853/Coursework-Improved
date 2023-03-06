@@ -14,6 +14,7 @@ from viewlistdetails import viewListDetails
 from auctionBids import auctionBids
 from invoicepage import createInvoice
 from findinv import findInvoices
+from viewbasket import viewBasket
 
 class appClass():
     def __init__(self,app):
@@ -93,3 +94,9 @@ class appClass():
     def callFindInvoices(self,userID,admin=False):
         self.findinvwindow = findInvoices(self,userID,admin)
         self.findinvwindow.show()
+
+    def callViewBasket(self,userID,admin=False):
+        self.userID = userID
+        self.admin = admin
+        self.viewbasketwindow = viewBasket(self,self.userID,self.admin)
+        self.viewbasketwindow.show()

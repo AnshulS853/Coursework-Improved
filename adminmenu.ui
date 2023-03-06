@@ -42,7 +42,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>600</y>
+      <y>661</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -60,7 +60,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>669</y>
+      <y>730</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -78,7 +78,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>566</y>
+      <y>627</y>
       <width>181</width>
       <height>25</height>
      </rect>
@@ -129,7 +129,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>280</y>
+      <y>341</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -147,7 +147,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>422</y>
+      <y>483</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -181,7 +181,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>350</y>
+      <y>411</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -199,7 +199,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>495</y>
+      <y>556</y>
       <width>341</width>
       <height>51</height>
      </rect>
@@ -211,6 +211,24 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>My Invoices</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gotobasket">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>270</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:20px;
+background-color: rgb(230, 230, 250);
+font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>View Basket</string>
     </property>
    </widget>
   </widget>
