@@ -20,29 +20,38 @@ class viewBasket(QDialog):
         self.goback.clicked.connect(self.gobackwindow)
 
     def gobackwindow(self):
+        self.close()
         if self.admin:
-            self.close()
             self.app.callAdminWindow(self.userID)
         else:
-            self.close()
             self.app.callMainWindow(self.userID)
 
+    # def updatepreferences(self):
+    #     self.cur.execute('SELECT listingID,quantity FROM basket WHERE userID = ? AND purchased = 0',(self.userID,))
+    #     fetchbasket = self.cur.fetchall()
+    #
+    #     self.bItems = []
+    #
+    #     for i in fetchbasket:
+    #         self.cur.execute('SELECT title,price,format,delivery FROM listings WHERE listingID = ?',(i[0],))
+    #         query = self.cur.fetchall()[0]
+    #         query = list(query)
+    #         query.append(i[1])
+    #         query = tuple(query)
+    #         self.bItems.append(query)
+    #
+    #     self.loadTable()
+
     def updatepreferences(self):
-        self.cur.execute('SELECT listingID,quantity FROM basket WHERE userID = ? AND purchased = 0',(self.userID,))
+        self.cur.execute('''
+            SELECT l.title, l.price, l.format, l.delivery, b.quantity
+            FROM basket b
+            JOIN listings l ON b.listingID = l.listingID
+            WHERE b.userID = ? AND b.purchased = 0
+        ''', (self.userID,))
         fetchbasket = self.cur.fetchall()
 
-        self.bItems = []
-
-        for i in fetchbasket:
-            self.cur.execute('SELECT title,price,format,delivery FROM listings WHERE listingID = ?',(i[0],))
-            query = self.cur.fetchall()[0]
-            query = list(query)
-            query.append(i[1])
-            print(self.bItems)
-            query = tuple(query)
-            print(query)
-            self.bItems.append(query)
-            print(self.bItems)
+        self.bItems = [tuple(row) for row in fetchbasket]
 
         self.loadTable()
 

@@ -199,11 +199,10 @@ class FillProfileScreen(QDialog):
             self.filltoast.setText("You cannot go back until fields are filled!")
             return
 
+        self.close()
         if self.admin:
-            self.close()
             self.app.callAdminWindow(self.userID)
         else:
-            self.close()
             self.app.callMainWindow(self.userID)
 
     def skiptoaddress(self):

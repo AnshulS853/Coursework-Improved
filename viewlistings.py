@@ -29,11 +29,10 @@ class viewListings(QDialog):
         self.gotoview.clicked.connect(self.gotoviewlisting)
 
     def gobackwindow(self):
+        self.close()
         if self.admin:
-            self.close()
             self.app.callAdminWindow(self.userID)
         else:
-            self.close()
             self.app.callMainWindow(self.userID)
 
     def fetchlistingID(self):
