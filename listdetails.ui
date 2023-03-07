@@ -54,10 +54,10 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
      <string>Listing Details</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="continuepage">
+   <widget class="QPushButton" name="continuebasket">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>510</x>
       <y>710</y>
       <width>341</width>
       <height>51</height>
@@ -69,7 +69,7 @@ background-color: rgb(230, 230, 250);
 font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>Continue</string>
+     <string>Add to Basket</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -127,7 +127,7 @@ Description</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>64</x>
       <y>580</y>
       <width>98</width>
       <height>33</height>
@@ -144,7 +144,7 @@ font-weight: bold;</string>
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>230</x>
       <y>550</y>
       <width>145</width>
       <height>66</height>
@@ -162,7 +162,7 @@ Remaining</string>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>450</x>
       <y>570</y>
       <width>133</width>
       <height>33</height>
@@ -197,7 +197,7 @@ Category</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>710</x>
       <y>570</y>
       <width>112</width>
       <height>33</height>
@@ -221,7 +221,7 @@ font-weight: bold;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;; color:red;</string>
+     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;; color:white;</string>
     </property>
     <property name="text">
      <string/>
@@ -323,7 +323,7 @@ color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="pricefield">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>430</x>
       <y>610</y>
       <width>181</width>
       <height>71</height>
@@ -344,7 +344,7 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="durationfield">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>240</x>
       <y>620</y>
       <width>121</width>
       <height>71</height>
@@ -365,10 +365,10 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="formatfield">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>50</x>
       <y>620</y>
-      <width>101</width>
-      <height>31</height>
+      <width>131</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -386,9 +386,9 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="deliveryfield">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>640</x>
       <y>610</y>
-      <width>121</width>
+      <width>241</width>
       <height>31</height>
      </rect>
     </property>
@@ -407,9 +407,9 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="deliverylocation">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>640</x>
       <y>640</y>
-      <width>171</width>
+      <width>241</width>
       <height>61</height>
      </rect>
     </property>
@@ -425,10 +425,43 @@ color:rgb(255, 255, 255);</string>
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
+   <widget class="QLineEdit" name="quantityfield">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>710</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>690</y>
+      <width>121</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
+font-weight: bold;</string>
+    </property>
+    <property name="text">
+     <string>Enter
+Quantity</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>continuepage</tabstop>
+  <tabstop>continuebasket</tabstop>
  </tabstops>
  <resources>
   <include location="placeholder.qrc"/>
