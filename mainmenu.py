@@ -38,7 +38,7 @@ class mainmenu(QDialog):
 
     def view_basket(self):
         self.close()
-        self.app.callViewBasket(self.userID,self.admin)
+        self.app.callViewBasket(self.userID)
 
     def create_listing(self):
         self.close()
