@@ -17,6 +17,8 @@ class viewBasket(QDialog):
 
         self.updatepreferences()
 
+        self.goback.clicked.connect(self.gobackwindow)
+
     def gobackwindow(self):
         if self.admin:
             self.close()
@@ -37,29 +39,22 @@ class viewBasket(QDialog):
             query = list(query)
             query.append(i[1])
             print(self.bItems)
+            query = tuple(query)
+            print(query)
             self.bItems.append(query)
             print(self.bItems)
-    #
-    #
-    #
-    #
-    #
-    #     self.loadTable()
-    #
-    # def loadTable(self):
-    #     self.btable.setRowCount(0)
-    #
-    #     self.cur.execute(str(self.bItems))
-    #     results = self.cur.fetchall()
-    #     self.btable.setRowCount(50)
-    #
-    #     for row_number, row_data in enumerate(results):
-    #         self.btable.insertRow(row_number)
-    #         for column_number, data in enumerate(row_data):
-    #             self.btable.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-    #
-    #     self.btable.setColumnHidden(0, True)
-    #
-    #     header = self.btable.horizontalHeader()
-    #     for i in range(4):
-    #         header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
+
+        self.loadTable()
+
+    def loadTable(self):
+        self.btable.setRowCount(0)
+        self.btable.setRowCount(50)
+
+        for row_number, row_data in enumerate(self.bItems):
+            self.btable.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.btable.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+
+        header = self.btable.horizontalHeader()
+        for i in range(4):
+            header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
