@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 
 import sqlite3
+import locale
 
 class viewBasket(QDialog):
     def __init__(self, app, uid, admin):
@@ -16,6 +17,7 @@ class viewBasket(QDialog):
         self.cur = self.conn.cursor()
 
         self.updatepreferences()
+        self.updatesummary()
 
         self.viewitem.clicked.connect(self.gotoitem)
         self.remitem.clicked.connect(self.removeitem)
@@ -28,6 +30,32 @@ class viewBasket(QDialog):
             self.app.callAdminWindow(self.userID)
         else:
             self.app.callMainWindow(self.userID)
+
+    def updatesummary(self):
+        self.cur.execute('SELECT * FROM basket WHERE purchased = 0')
+        basket = self.cur.fetchall()
+
+        itemsno = 0
+        btotal = 0
+
+        self.cur.execute('SELECT addressID FROM usad WHERE userID = ?',(self.userID,))
+        addressID = self.cur.fetchone()[0]
+        self.cur.execute('SELECT postcode FROM address WHERE addressID = ?',(addressID,))
+        postcode = self.cur.fetchone()[0]
+
+        for i in basket:
+            itemsno += i[3]
+
+            self.cur.execute('SELECT price FROM listings WHERE listingID = ?',(i[2],))
+            fetchprice = self.cur.fetchone()[0]
+            btotal += (float(fetchprice[1:])) * i[3]
+
+        locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
+
+        self.summary.setText("Number of Items: " + str(itemsno)
+                             + "\nBasket total: " + str(locale.currency(btotal, grouping=True))
+                             + "\nNon VAT total: " + str(locale.currency((0.8 * btotal), grouping=True))
+                             + "\nPostage to: " + str(postcode))
 
     def fetchlistingID(self):
         row = self.btable.currentRow()
