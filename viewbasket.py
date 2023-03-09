@@ -19,6 +19,7 @@ class viewBasket(QDialog):
 
         self.viewitem.clicked.connect(self.gotoitem)
         self.remitem.clicked.connect(self.removeitem)
+        self.clearbask.clicked.connect(self.clearbasket)
         self.goback.clicked.connect(self.gobackwindow)
 
     def gobackwindow(self):
@@ -40,6 +41,10 @@ class viewBasket(QDialog):
     def removeitem(self):
         self.fetchlistingID()
         self.cur.execute('DELETE FROM basket WHERE listingID = ? AND purchased = 0 ',(self.currentListingID,))
+        self.updatepreferences()
+
+    def clearbasket(self):
+        self.cur.execute('DELETE FROM basket WHERE purchased = 0')
         self.updatepreferences()
 
     def updatepreferences(self):

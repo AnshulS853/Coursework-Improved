@@ -266,7 +266,7 @@ from basket</string>
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="remitem_2">
+   <widget class="QPushButton" name="clearbask">
     <property name="geometry">
      <rect>
       <x>870</x>
