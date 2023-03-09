@@ -71,6 +71,11 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
     </attribute>
     <column>
      <property name="text">
+      <string>listingID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Title</string>
      </property>
     </column>

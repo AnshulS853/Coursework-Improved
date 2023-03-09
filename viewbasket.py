@@ -17,6 +17,8 @@ class viewBasket(QDialog):
 
         self.updatepreferences()
 
+        self.viewitem.clicked.connect(self.gotoitem)
+        self.remitem.clicked.connect(self.removeitem)
         self.goback.clicked.connect(self.gobackwindow)
 
     def gobackwindow(self):
@@ -26,25 +28,23 @@ class viewBasket(QDialog):
         else:
             self.app.callMainWindow(self.userID)
 
-    # def updatepreferences(self):
-    #     self.cur.execute('SELECT listingID,quantity FROM basket WHERE userID = ? AND purchased = 0',(self.userID,))
-    #     fetchbasket = self.cur.fetchall()
-    #
-    #     self.bItems = []
-    #
-    #     for i in fetchbasket:
-    #         self.cur.execute('SELECT title,price,format,delivery FROM listings WHERE listingID = ?',(i[0],))
-    #         query = self.cur.fetchall()[0]
-    #         query = list(query)
-    #         query.append(i[1])
-    #         query = tuple(query)
-    #         self.bItems.append(query)
-    #
-    #     self.loadTable()
+    def fetchlistingID(self):
+        row = self.btable.currentRow()
+        self.currentListingID = int(self.btable.item(row, 0).text())
+
+    def gotoitem(self):
+        self.fetchlistingID()
+        self.close()
+        self.app.callViewListingDetails(self.currentListingID,self.admin)
+
+    def removeitem(self):
+        self.fetchlistingID()
+        self.cur.execute('DELETE FROM basket WHERE listingID = ? AND purchased = 0 ',(self.currentListingID,))
+        self.updatepreferences()
 
     def updatepreferences(self):
         self.cur.execute('''
-            SELECT l.title, l.price, l.format, l.delivery, b.quantity
+            SELECT l.listingID, l.title, l.price, l.format, l.delivery, b.quantity
             FROM basket b
             JOIN listings l ON b.listingID = l.listingID
             WHERE b.userID = ? AND b.purchased = 0
@@ -64,6 +64,8 @@ class viewBasket(QDialog):
             for column_number, data in enumerate(row_data):
                 self.btable.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
+        self.btable.setColumnHidden(0, True)
+
         header = self.btable.horizontalHeader()
-        for i in range(4):
+        for i in range(6):
             header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
