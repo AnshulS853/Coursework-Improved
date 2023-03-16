@@ -72,34 +72,14 @@ class refreshLists:
                 s_buyerAddress = f"{first_part}\n{second_part}"
                 # print the concatenated address
 
-                ##Fetch seller's address
-                self.cur.execute('SELECT sellerID FROM listings WHERE listingID = ?',(currentlistingID,))
-                sellerID = self.cur.fetchone()[0]
-                self.cur.execute('SELECT addressID FROM usad WHERE userID = ?',(sellerID,))
-                sellerAddressID = self.cur.fetchone()[0]
-                self.cur.execute('SELECT * FROM address WHERE addressID = ?',(sellerAddressID,))
-                sellerAddress = self.cur.fetchall()[0]
-
-                # concatenate first two indexes with a space
-                first_part = sellerAddress[1] + ' ' + sellerAddress[2]
-                # concatenate the rest of the indexes with a new line
-                second_part = '\n'.join(sellerAddress[3:])
-                # concatenate the two parts and store in a new variable
-                s_sellerAddress = f"{first_part}\n{second_part}"
-                # print the concatenated address
-
-
-
-
                 self.cur.execute('''
                                 INSERT INTO invoice
                                 (couponID,
                                 buyerID,
                                 purchasedate,
-                                buyeraddress,
-                                selleraddress)
-                                VALUES (NULL,?,DATE('now'),?,?)
-                                ''',(result[0],s_buyerAddress,s_sellerAddress))
+                                buyeraddress)
+                                VALUES (NULL,?,DATE('now'),?)
+                                ''',(result[0],s_buyerAddress))
                 invoiceID = self.cur.lastrowid
 
 

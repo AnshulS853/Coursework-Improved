@@ -23,6 +23,7 @@ class viewBasket(QDialog):
         self.remitem.clicked.connect(self.removeitem)
         self.clearbask.clicked.connect(self.clearbasket)
         self.goback.clicked.connect(self.gobackwindow)
+        self.checkout.clicked.connect(self.gotocheckout)
 
     def gobackwindow(self):
         self.close()
@@ -39,18 +40,19 @@ class viewBasket(QDialog):
         btotal = 0
 
         self.cur.execute('SELECT addressID FROM usad WHERE userID = ?',(self.userID,))
-        addressID = self.cur.fetchone()[0]
-        self.cur.execute('SELECT postcode FROM address WHERE addressID = ?',(addressID,))
+        self.addressID = self.cur.fetchone()[0]
+        self.cur.execute('SELECT postcode FROM address WHERE addressID = ?',(self.addressID,))
         postcode = self.cur.fetchone()[0]
+
+        locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
 
         for i in basket:
             itemsno += i[3]
 
             self.cur.execute('SELECT price FROM listings WHERE listingID = ?',(i[2],))
             fetchprice = self.cur.fetchone()[0]
-            btotal += (float(fetchprice[1:])) * i[3]
-
-        locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
+            # btotal += (float(fetchprice[1:])) * i[3]
+            btotal += (locale.atof(fetchprice[1:])) * i[3]
 
         self.summary.setText("Number of Items: " + str(itemsno)
                              + "\nBasket total: " + str(locale.currency(btotal, grouping=True))
@@ -102,3 +104,53 @@ class viewBasket(QDialog):
         header = self.btable.horizontalHeader()
         for i in range(6):
             header.setSectionResizeMode(i, QtWidgets.QHeaderView.Stretch)
+
+    # def gotocheckout(self):
+    #     cbasket = []
+    #     for i in self.bItems:
+    #         listingID = i[0]
+    #         quantity = i[5]
+    #         cbasket.append((listingID, quantity))
+
+    def gotocheckout(self):
+        self.checkout.setText('Purchase')
+        self.checkout.clicked.connect(self.purchase)
+
+    def purchase(self):
+        basketIDs = [i[0] for i in self.bItems]
+
+        for i in self.bItems:
+            self.cur.execute('''
+                            UPDATE basket
+                            SET purchased = 1
+                            WHERE listingID = ?
+                            ''',(i[0],))
+
+
+        ##Fetch buyer's address
+        self.cur.execute('SELECT * FROM address WHERE addressID = ?', (self.addressID,))
+        buyerAddress = self.cur.fetchall()[0]
+
+        # concatenate first two indexes with a space
+        first_part = buyerAddress[1] + ' ' + buyerAddress[2]
+        # concatenate the rest of the indexes with a new line
+        second_part = '\n'.join(buyerAddress[3:])
+        # concatenate the two parts and store in a new variable
+        s_buyerAddress = f"{first_part}\n{second_part}"
+        # print the concatenated address
+
+        self.cur.execute('''
+                        INSERT INTO invoice
+                        (buyerID,
+                        purchasedate,
+                        buyeraddress)
+                        VALUES (?,DATE('now'),?)
+                        ''',(self.userID,str(s_buyerAddress)))
+        invoiceID = self.cur.lastrowid
+
+        for i in basketIDs:
+            self.cur.execute('''
+                            INSERT INTO binv
+                            (basketID,invoiceID)
+                            VALUES (?,?)
+                            ''',(i,invoiceID))
