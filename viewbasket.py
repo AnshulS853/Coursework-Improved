@@ -121,12 +121,12 @@ class viewBasket(QDialog):
 
         for i in c_basket:
             self.cur.execute('''
-                            UPDATE listings SET quantity = 
-                            CASE 
+                            UPDATE listings SET quantity =
+                            CASE
                               WHEN (quantity - ?) > 0 THEN (quantity - ?)
                               ELSE 0
                             END,
-                            active = 
+                            active =
                             CASE
                               WHEN (quantity - ?) > 0 THEN active
                               ELSE 0
