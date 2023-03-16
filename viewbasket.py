@@ -169,3 +169,9 @@ class viewBasket(QDialog):
                             (basketID,invoiceID)
                             VALUES (?,?)
                             ''',(i[0],invoiceID))
+
+        self.close()
+        if self.admin:
+            self.app.callAdminWindow(self.userID)
+        else:
+            self.app.callMainWindow(self.userID)
