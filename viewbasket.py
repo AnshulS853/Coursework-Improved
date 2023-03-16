@@ -117,8 +117,6 @@ class viewBasket(QDialog):
         self.checkout.clicked.connect(self.purchase)
 
     def purchase(self):
-        basketIDs = [i[0] for i in self.bItems]
-
         c_basket = [(i[0], i[5]) for i in self.bItems]
 
         for i in c_basket:
@@ -165,9 +163,9 @@ class viewBasket(QDialog):
                         ''',(self.userID,str(s_buyerAddress)))
         invoiceID = self.cur.lastrowid
 
-        for i in basketIDs:
+        for i in c_basket:
             self.cur.execute('''
                             INSERT INTO binv
                             (basketID,invoiceID)
                             VALUES (?,?)
-                            ''',(i,invoiceID))
+                            ''',(i[0],invoiceID))
