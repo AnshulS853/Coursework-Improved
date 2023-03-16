@@ -119,6 +119,23 @@ class viewBasket(QDialog):
     def purchase(self):
         basketIDs = [i[0] for i in self.bItems]
 
+        c_basket = [(i[0], i[5]) for i in self.bItems]
+
+        for i in c_basket:
+            self.cur.execute('''
+                            UPDATE listings SET quantity = 
+                            CASE 
+                              WHEN (quantity - ?) > 0 THEN (quantity - ?)
+                              ELSE 0
+                            END,
+                            active = 
+                            CASE
+                              WHEN (quantity - ?) > 0 THEN active
+                              ELSE 0
+                            END
+                            WHERE listingID = ?;
+                            ''',(i[1],i[1],i[1],i[0]))
+
         for i in self.bItems:
             self.cur.execute('''
                             UPDATE basket
