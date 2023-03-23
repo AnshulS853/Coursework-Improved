@@ -50,55 +50,42 @@ class findInvoices(QDialog):
     #     except:
     #         self.confirmtoast.setText('Select one\nrecord')
 
-    def fetchlistingsbought(self):
-        # self.cur.execute('SELECT listingID FROM invoice WHERE buyerID = ?',(self.userID,))
-        # buyerIDs = self.cur.fetchall()
-        # # print("buyerIDs = ",buyerIDs)
-        #
-        #
-        # self.cur.execute('SELECT listingID FROM listings WHERE sellerID = ? AND active=0',(self.userID,))
-        # listingIDs = self.cur.fetchall()
-        # # print("listingIDs",listingIDs)
-        #
-        # self.insertlist = []
-        #
-        # if buyerIDs:
-        #     for i in buyerIDs:
-        #         i = i[0]
-        #         self.insertlist.append(i)
-        #
-        # if listingIDs:
-        #     for i in listingIDs:
-        #         i = i[0]
-        #         self.cur.execute('SELECT COUNT(listingID) FROM invoice WHERE listingID=?',(i,))
-        #         result = self.cur.fetchall()
-        #         result = result[0][0]
-        #         if result == 0:
-        #             pass
-        #         else:
-        #             self.insertlist.append(i)
+    # def fetchlistingsbought(self):
+    #     invdetails = []
+    #
+    #     self.cur.execute('SELECT basketID,listingID,quantity FROM basket WHERE purchased = 1')
+    #     idquant = self.cur.fetchall()
+    #
+    #     for i in idquant:
+    #         self.cur.execute('SELECT title,price FROM listings WHERE listingID = ?',(i[1],))
+    #         tipri = self.cur.fetchall()[0]
+    #
+    #         self.cur.execute('SELECT invoiceID from binv WHERE basketID = ?',(i[0],))
+    #         invoiceID = self.cur.fetchone()[0]
+    #
+    #         self.cur.execute('SELECT purchasedate FROM invoice WHERE invoiceID = ?',(invoiceID,))
+    #         purchasedate = self.cur.fetchone()[0]
+    #
+    #         invdetails.append((i[1], tipri[0], i[2], tipri[1], purchasedate))
+    #
+    #     return invdetails
 
+    def fetchlistingsbought(self):
         invdetails = []
 
-        self.cur.execute('SELECT basketID,listingID,quantity FROM basket WHERE purchased = 1')
-        idquant = self.cur.fetchall()
+        self.cur.execute(
+            '''SELECT b.listingID, l.title, b.quantity, l.price, i.purchasedate 
+            FROM basket b 
+            INNER JOIN listings l ON b.listingID = l.listingID 
+            INNER JOIN binv bi ON b.basketID = bi.basketID 
+            INNER JOIN invoice i ON bi.invoiceID = i.invoiceID 
+            WHERE b.purchased = 1''')
+        rows = self.cur.fetchall()
 
-
-        for i in idquant:
-            self.cur.execute('SELECT title,price FROM listings WHERE listingID = ?',(i[1],))
-            tipri = self.cur.fetchall()[0]
-
-            self.cur.execute('SELECT invoiceID from binv WHERE basketID = ?',(i[0],))
-            invoiceID = self.cur.fetchone()[0]
-
-            self.cur.execute('SELECT purchasedate FROM invoice WHERE invoiceID = ?',(invoiceID,))
-            purchasedate = self.cur.fetchone()[0]
-
-            invdetails.append((i[1], tipri[0], i[2], tipri[1], purchasedate))
+        for row in rows:
+            invdetails.append(row)
 
         return invdetails
-
-
 
     def loadTable(self):
         results = self.fetchlistingsbought()
