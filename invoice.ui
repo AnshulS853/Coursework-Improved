@@ -41,10 +41,10 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>50</y>
-      <width>671</width>
-      <height>85</height>
+      <x>280</x>
+      <y>30</y>
+      <width>373</width>
+      <height>116</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -78,9 +78,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>170</y>
-      <width>253</width>
-      <height>38</height>
+      <y>160</y>
+      <width>334</width>
+      <height>52</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -91,133 +91,13 @@ font-weight: bold;</string>
      <string>Product Details</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>220</y>
-      <width>47</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Title</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>260</y>
-      <width>93</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Product
-Category</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>326</y>
-      <width>101</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Condition</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>376</y>
-      <width>97</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>SellerID</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>426</y>
-      <width>85</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Delivery</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>476</y>
-      <width>73</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Format</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>160</y>
-      <width>253</width>
-      <height>38</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 32pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Delivered From</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>360</y>
-      <width>221</width>
-      <height>38</height>
+      <x>590</x>
+      <y>170</y>
+      <width>274</width>
+      <height>52</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -232,9 +112,9 @@ font-weight: bold;</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>571</y>
-      <width>253</width>
-      <height>38</height>
+      <y>580</y>
+      <width>327</width>
+      <height>52</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -250,8 +130,8 @@ font-weight: bold;</string>
      <rect>
       <x>70</x>
       <y>640</y>
-      <width>103</width>
-      <height>24</height>
+      <width>142</width>
+      <height>33</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -267,8 +147,8 @@ font-weight: bold;</string>
      <rect>
       <x>70</x>
       <y>690</y>
-      <width>74</width>
-      <height>48</height>
+      <width>101</width>
+      <height>66</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -285,8 +165,8 @@ Date</string>
      <rect>
       <x>70</x>
       <y>770</y>
-      <width>74</width>
-      <height>48</height>
+      <width>96</width>
+      <height>66</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -301,10 +181,10 @@ Price</string>
    <widget class="QLabel" name="label_18">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>490</x>
       <y>570</y>
-      <width>253</width>
-      <height>38</height>
+      <width>306</width>
+      <height>52</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -316,14 +196,6 @@ font-weight: bold;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_19">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>634</y>
-      <width>120</width>
-      <height>24</height>
-     </rect>
-    </property>
     <property name="styleSheet">
      <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
 font-weight: bold;</string>
@@ -333,14 +205,6 @@ font-weight: bold;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>689</y>
-      <width>131</width>
-      <height>24</height>
-     </rect>
-    </property>
     <property name="styleSheet">
      <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
 font-weight: bold;</string>
@@ -350,151 +214,30 @@ font-weight: bold;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_21">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>740</y>
-      <width>140</width>
-      <height>48</height>
-     </rect>
-    </property>
     <property name="styleSheet">
      <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
 font-weight: bold;</string>
     </property>
     <property name="text">
-     <string>15% Business
-comission</string>
+     <string>20%  VAT</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_22">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>800</y>
-      <width>140</width>
-      <height>48</height>
-     </rect>
-    </property>
     <property name="styleSheet">
      <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
 font-weight: bold;</string>
     </property>
     <property name="text">
-     <string>Amount Due</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="titlefield">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>220</y>
-      <width>361</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 14pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="categoryfield">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>270</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 14pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="conditionfield">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>320</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 14pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="sellerIDfield">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>372</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 14pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="deliveryfield">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>424</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 14pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="formatfield">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>474</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 14pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
+     <string>Total
+Amount</string>
     </property>
    </widget>
    <widget class="QLabel" name="invoiceIDfield">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>220</x>
       <y>632</y>
-      <width>271</width>
+      <width>241</width>
       <height>41</height>
      </rect>
     </property>
@@ -510,9 +253,9 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>695</y>
+      <y>700</y>
       <width>271</width>
-      <height>41</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -529,7 +272,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
       <x>190</x>
       <y>771</y>
       <width>271</width>
-      <height>41</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -538,38 +281,15 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
      <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="deliveredfromfield">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>210</y>
-      <width>331</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="deliveredtofield">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>416</y>
+      <x>590</x>
+      <y>230</y>
       <width>331</width>
-      <height>141</height>
+      <height>311</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -589,9 +309,9 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="listedpricefield">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>660</x>
       <y>630</y>
-      <width>271</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -606,9 +326,9 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="finalpricefield">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>660</x>
       <y>682</y>
-      <width>271</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -623,9 +343,9 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="businesscomfield">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>660</x>
       <y>746</y>
-      <width>271</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -640,10 +360,10 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="amountduefield">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>660</x>
       <y>805</y>
-      <width>271</width>
-      <height>41</height>
+      <width>251</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -653,6 +373,37 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     <property name="text">
      <string/>
     </property>
+   </widget>
+   <widget class="QTableWidget" name="ilistingstable">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>220</y>
+      <width>481</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
+    </property>
+    <attribute name="verticalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Title</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Quantity</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Price</string>
+     </property>
+    </column>
    </widget>
   </widget>
  </widget>

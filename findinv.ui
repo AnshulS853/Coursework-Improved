@@ -41,7 +41,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>110</x>
       <y>50</y>
       <width>576</width>
       <height>116</height>
@@ -77,7 +77,7 @@ background-color:qlineargradient(spread:pad, x1:0.091, y1:0.101636, x2:0.991379,
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>450</y>
+      <y>470</y>
       <width>141</width>
       <height>51</height>
      </rect>
@@ -95,7 +95,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>80</y>
+      <y>70</y>
       <width>81</width>
       <height>91</height>
      </rect>
@@ -135,12 +135,17 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
     </column>
     <column>
      <property name="text">
+      <string>Quantity</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Price</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>DateOfEnd</string>
+      <string>Purchase Date</string>
      </property>
     </column>
    </widget>
