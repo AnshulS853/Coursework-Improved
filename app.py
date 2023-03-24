@@ -87,8 +87,8 @@ class appClass():
         self.auctionbidswindow = auctionBids(self,buyerID,listingID,admin,postcode)
         self.auctionbidswindow.show()
 
-    def callCreateInvoice(self,listingID,userID,invoiceID,admin):
-        self.invoicewindow = createInvoice(self,listingID,userID,invoiceID,admin)
+    def callCreateInvoice(self,basketID,admin):
+        self.invoicewindow = createInvoice(self, basketID, self.userID, admin)
         self.invoicewindow.show()
 
     def callFindInvoices(self,userID,admin=False):

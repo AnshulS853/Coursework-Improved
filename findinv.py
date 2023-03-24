@@ -13,15 +13,14 @@ class findInvoices(QDialog):
         self.userID = uid
         self.admin = admin
 
-        self.currentListingID = None
+        self.currentBasketID = None
 
-        self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
+        self.conn = sqlite3.connect("auc_database.db", isolation_level=None)
         self.cur = self.conn.cursor()
 
 
-
         self.goback.clicked.connect(self.gotomenu)
-    #     self.view.clicked.connect(self.gotoinvoice)
+        self.view.clicked.connect(self.gotoinvoice)
         self.loadTable()
     #
     def gotomenu(self):
@@ -31,16 +30,20 @@ class findInvoices(QDialog):
         else:
             self.close()
             self.app.callMainWindow(self.userID)
-    #
-    # def fetchlistingID(self):
-    #     try:
-    #         row = self.ilistingstable.currentRow()
-    #         self.currentListingID = int(self.ilistingstable.item(row, 0).text())
-    #     except:
-    #         self.confirmtoast.setText("Select a\nRecord")
-    #
-    # def gotoinvoice(self):
-    #     self.fetchlistingID()
+
+    def fetchBasketID(self):
+        try:
+            row = self.ilistingstable.currentRow()
+            self.currentBasketID = int(self.ilistingstable.item(row, 0).text())
+            return True
+        except:
+            self.confirmtoast.setText("Select a\nRecord")
+            return
+    def gotoinvoice(self):
+        if self.fetchBasketID() is True:
+            self.close()
+            self.app.callCreateInvoice(self.currentBasketID, self.admin)
+
     #     self.cur.execute('SELECT invoiceID FROM invoice WHERE listingID = ?',(self.currentListingID,))
     #     invoiceID = self.cur.fetchall()
     #     try:
@@ -66,20 +69,22 @@ class findInvoices(QDialog):
     #         self.cur.execute('SELECT purchasedate FROM invoice WHERE invoiceID = ?',(invoiceID,))
     #         purchasedate = self.cur.fetchone()[0]
     #
-    #         invdetails.append((i[1], tipri[0], i[2], tipri[1], purchasedate))
+    #         invdetails.append((i[0], tipri[0], i[2], tipri[1], purchasedate))
     #
     #     return invdetails
 
     def fetchlistingsbought(self):
         invdetails = []
 
-        self.cur.execute(
-            '''SELECT b.listingID, l.title, b.quantity, l.price, i.purchasedate 
+        self.cur.execute('''
+            SELECT b.listingID, l.title, b.quantity, l.price, i.purchasedate 
             FROM basket b 
             INNER JOIN listings l ON b.listingID = l.listingID 
             INNER JOIN binv bi ON b.basketID = bi.basketID 
             INNER JOIN invoice i ON bi.invoiceID = i.invoiceID 
-            WHERE b.purchased = 1''')
+            WHERE b.purchased = 1 AND b.userID = ?
+            ''',(self.userID,))
+
         rows = self.cur.fetchall()
 
         for row in rows:
@@ -91,7 +96,6 @@ class findInvoices(QDialog):
         results = self.fetchlistingsbought()
         self.ilistingstable.setRowCount(0)
 
-        # print(results)
         self.ilistingstable.setRowCount(50)
 
         for row_number, row_data in enumerate(results):

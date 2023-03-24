@@ -196,24 +196,31 @@ font-weight: bold;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>643</y>
+      <width>157</width>
+      <height>33</height>
+     </rect>
+    </property>
     <property name="styleSheet">
      <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
 font-weight: bold;</string>
     </property>
     <property name="text">
-     <string>Listed Price</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="styleSheet">
-     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
-font-weight: bold;</string>
-    </property>
-    <property name="text">
-     <string>Final Price</string>
+     <string>Subtotal</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>704</y>
+      <width>135</width>
+      <height>33</height>
+     </rect>
+    </property>
     <property name="styleSheet">
      <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
 font-weight: bold;</string>
@@ -223,6 +230,14 @@ font-weight: bold;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_22">
+    <property name="geometry">
+     <rect>
+      <x>494</x>
+      <y>765</y>
+      <width>106</width>
+      <height>66</height>
+     </rect>
+    </property>
     <property name="styleSheet">
      <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255);
 font-weight: bold;</string>
@@ -232,12 +247,12 @@ font-weight: bold;</string>
 Amount</string>
     </property>
    </widget>
-   <widget class="QLabel" name="invoiceIDfield">
+   <widget class="QLabel" name="invIDfield">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>632</y>
-      <width>241</width>
+      <x>240</x>
+      <y>638</y>
+      <width>221</width>
       <height>41</height>
      </rect>
     </property>
@@ -249,7 +264,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="invoicedatefield">
+   <widget class="QLabel" name="invdatefield">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -303,14 +318,14 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
-   <widget class="QLabel" name="listedpricefield">
+   <widget class="QLabel" name="subtotalfield">
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>630</y>
+      <y>643</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -323,11 +338,11 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="finalpricefield">
+   <widget class="QLabel" name="vatfield">
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>682</y>
+      <y>700</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -340,28 +355,11 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="businesscomfield">
+   <widget class="QLabel" name="totalfield">
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>746</y>
-      <width>251</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(0,0,0,0);
-font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="amountduefield">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>805</y>
+      <y>760</y>
       <width>251</width>
       <height>61</height>
      </rect>

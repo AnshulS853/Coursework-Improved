@@ -125,7 +125,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;; color:rgb(255, 255, 255)</string>
     </attribute>
     <column>
      <property name="text">
-      <string>ListingID</string>
+      <string>BasketID</string>
      </property>
     </column>
     <column>
