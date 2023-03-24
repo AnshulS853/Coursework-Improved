@@ -15,6 +15,8 @@ class createInvoice(QDialog):
         self.userID = uid
         self.admin = admin
 
+        self.totalprice = 0
+
         self.goback.clicked.connect(self.gobackpage)
 
         self.conn = sqlite3.connect("auc_database.db",isolation_level=None)
@@ -53,6 +55,9 @@ class createInvoice(QDialog):
                 tipri = self.cur.fetchone()
                 tablecontents.append((tipri[0],j[2],tipri[1]))
 
+                locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
+                self.totalprice += (j[2])*(locale.atof(tipri[1][1:]))
+
         return tablecontents
 
     def loadTable(self):
@@ -78,6 +83,15 @@ class createInvoice(QDialog):
 
         self.invIDfield.setText(str(self.invoiceID))
         self.invdatefield.setText(invoicedet[0])
+
+        self.subtotalfield.setText(locale.currency((0.8 * self.totalprice), grouping=True))
+        self.vatfield.setText(locale.currency((0.2 * self.totalprice), grouping=True))
+        self.totalfield.setText(locale.currency(self.totalprice, grouping=True))
+
+        self.cur.execute('SELECT firstname,lastname FROM users WHERE userID = ?',(self.userID,))
+        name = self.cur.fetchone()
+        self.namefield.setText(str(name[0])+"\n"+str(name[1]))
+
 
 
     # def fetchinvoicedet(self):

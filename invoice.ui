@@ -129,7 +129,7 @@ font-weight: bold;</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>640</y>
+      <y>720</y>
       <width>142</width>
       <height>33</height>
      </rect>
@@ -146,7 +146,7 @@ font-weight: bold;</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>690</y>
+      <y>770</y>
       <width>101</width>
       <height>66</height>
      </rect>
@@ -164,8 +164,8 @@ Date</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>770</y>
-      <width>96</width>
+      <y>639</y>
+      <width>80</width>
       <height>66</height>
      </rect>
     </property>
@@ -174,8 +174,8 @@ Date</string>
 font-weight: bold;</string>
     </property>
     <property name="text">
-     <string>Agreed
-Price</string>
+     <string>Buyer
+Name</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_18">
@@ -251,7 +251,7 @@ Amount</string>
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>638</y>
+      <y>718</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -268,7 +268,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>700</y>
+      <y>780</y>
       <width>271</width>
       <height>61</height>
      </rect>
@@ -281,11 +281,11 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="agreedpricefield">
+   <widget class="QLabel" name="namefield">
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>771</y>
+      <y>640</y>
       <width>271</width>
       <height>71</height>
      </rect>
