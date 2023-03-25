@@ -16,6 +16,7 @@ class creationScreen(QDialog):
         self.goback.clicked.connect(self.gobacktomenu)
         self.continuepage.clicked.connect(self.createwindow)
         self.format.currentIndexChanged.connect(self.checkFormat)
+
     def checkFormat(self):
         if self.format.currentText() == "Auction":
             self.quantityfield.setEnabled(False)

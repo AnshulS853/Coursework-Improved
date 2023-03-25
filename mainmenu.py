@@ -16,6 +16,7 @@ class mainmenu(QDialog):
         self.gotoview.clicked.connect(lambda: self.view_listings())
         self.gotoupdateacc.clicked.connect(lambda: self.update_account())
         self.gotoinvoices.clicked.connect(lambda: self.find_invoices())
+        self.gotocoupon.clicked.connect(lambda: self.create_coupon())
 
     def get_cursor(self):
         conn = sqlite3.connect("auc_database.db")
@@ -55,3 +56,7 @@ class mainmenu(QDialog):
     def find_invoices(self):
         self.close()
         self.app.callFindInvoices(self.userID)
+
+    def create_coupon(self):
+        self.close()
+        self.app.callCouponCreation(self.userID)

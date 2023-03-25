@@ -113,6 +113,7 @@ class adminmenu(QDialog):
         self.gotoinvoices.clicked.connect(lambda: self.find_invoices())
         self.manageaccounts.clicked.connect(lambda: self.manageaccs())
         self.managelistings.clicked.connect(lambda: self.managelists())
+        self.gotocoupon.clicked.connect(lambda: self.create_coupon())
 
     def get_cursor(self):
         conn = sqlite3.connect("auc_database.db")
@@ -160,3 +161,7 @@ class adminmenu(QDialog):
     def managelists(self):
         self.close()
         self.app.callManageListings()
+
+    def create_coupon(self):
+        self.close()
+        self.app.callCouponCreation(self.userID,self.admin)

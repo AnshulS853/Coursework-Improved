@@ -15,6 +15,7 @@ from auctionBids import auctionBids
 from invoicepage import createInvoice
 from findinv import findInvoices
 from viewbasket import viewBasket
+from couponcreation import couponCreation
 
 class appClass():
     def __init__(self,app):
@@ -100,3 +101,9 @@ class appClass():
         self.admin = admin
         self.viewbasketwindow = viewBasket(self,self.userID,self.admin)
         self.viewbasketwindow.show()
+
+    def callCouponCreation(self,userID,admin=False):
+        self.userID = userID
+        self.admin = admin
+        self.callcouponwindow = couponCreation(self,self.userID,self.admin)
+        self.callcouponwindow.show()

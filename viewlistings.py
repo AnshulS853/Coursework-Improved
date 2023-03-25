@@ -11,10 +11,10 @@ class viewListings(QDialog):
         self.app = app
         self.userID = uid
         self.admin = admin
+
         self.currentListingID = None
         self.highlightedname = None
         self.query = None
-
         self.pcategory = None
         self.pcondition = None
         self.pdelivery = None
