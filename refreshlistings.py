@@ -103,12 +103,3 @@ class refreshLists:
                                 SET active=0
                                 WHERE listingID = (?)
                                 ''', (currentlistingID,))
-
-                try:
-                    self.cur.execute('''
-                                    UPDATE coupons
-                                    SET active=0
-                                    WHERE usability = (?)
-                                    ''',(currentlistingID,))
-                except:
-                    pass

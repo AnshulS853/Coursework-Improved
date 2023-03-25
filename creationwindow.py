@@ -21,9 +21,15 @@ class creationScreen(QDialog):
             self.quantityfield.setEnabled(False)
             self.quantityfield.setText("1")
             self.itemquantity = 1
+
+            self.couponfield.setEnabled(False)
+            self.couponfield.setText("N/A (Auction)")
         else:
             self.quantityfield.setEnabled(True)
             self.itemquantity = self.quantityfield.text()
+
+            self.couponfield.setEnabled(True)
+            self.couponfield.setText("No Coupon (Current)")
             try:
                 self.itemquantity = int(self.itemquantity)
                 if self.itemquantity < 0:
@@ -157,13 +163,23 @@ class creationScreen(QDialog):
                 ''', data)
             listingID = cur.lastrowid
 
-            if (self.couponfield.text() != "No Coupon (Current)") or (self.couponfield.text() != ""):
-                coupon = str(self.couponfield.text())
-                cur.execute('''
-                            INSERT INTO coupons 
-                            (coupontag,quantity,usability,active)
-                            VALUES (?,?,?,1)
-                            ''',(coupon,self.itemquantity,listingID))
+            # if (self.couponfield.text() != "No Coupon (Current)") or (self.couponfield.text() != ""):
+            #     coupon = str(self.couponfield.text())
+            #     cur.execute('''
+            #                 INSERT INTO coupons
+            #                 (coupontag,quantity,usability,active)
+            #                 VALUES (?,?,?,1)
+            #                 ''',(coupon,self.itemquantity,listingID))
+
+            coupon_text = self.couponfield.text()
+            if coupon_text not in {"No Coupon (Current)", ""}:
+                coupon = str(coupon_text)
+                data = [(coupon, self.itemquantity, listingID)]
+                cur.executemany('''
+                    INSERT INTO coupons 
+                    (coupontag,quantity,usability,active)
+                    VALUES (?,?,?,1)
+                    ''', data)
 
             conn.close()
 
