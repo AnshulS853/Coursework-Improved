@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 import sqlite3
 import locale
 
-
 class creationScreen(QDialog):
     def __init__(self, app, uid, admin):
         super(creationScreen, self).__init__()
@@ -13,10 +12,10 @@ class creationScreen(QDialog):
         self.app = app
         self.userID = uid
         self.admin = admin
+
         self.goback.clicked.connect(self.gobacktomenu)
         self.continuepage.clicked.connect(self.createwindow)
         self.format.currentIndexChanged.connect(self.checkFormat)
-
     def checkFormat(self):
         if self.format.currentText() == "Auction":
             self.quantityfield.setEnabled(False)
@@ -156,6 +155,16 @@ class creationScreen(QDialog):
                 (title, description, category, condition, format, dateofend, price, delivery, quantity, active, sellerID)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', data)
+            listingID = cur.lastrowid
+
+            if (self.couponfield.text() != "No Coupon (Current)") or (self.couponfield.text() != ""):
+                coupon = str(self.couponfield.text())
+                cur.execute('''
+                            INSERT INTO coupons 
+                            (coupontag,quantity,usability,active)
+                            VALUES (?,?,?,1)
+                            ''',(coupon,self.itemquantity,listingID))
+
             conn.close()
 
             if self.admin:
