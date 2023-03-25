@@ -30,14 +30,23 @@ class refreshLists:
         self.updatebuynow(buynowlist)
         self.updateauctions(auctionlist)
 
-    def updatebuynow(self, list):
-        for i in list:
-            currentlistingID = i
+    def updatebuynow(self, listingIDs):
+        for i in listingIDs:
             self.cur.execute('''
                             UPDATE listings
                             SET active=0
                             WHERE listingID = (?)
-                            ''',(currentlistingID,))
+                            ''',(i,))
+
+            try:
+                self.cur.execute('''
+                                UPDATE coupons
+                                SET active=0
+                                WHERE usability = (?)
+                                OR quantity = 0
+                                ''',(i,))
+            except:
+                pass
 
     def updateauctions(self, list):
         for i in list:
@@ -94,3 +103,12 @@ class refreshLists:
                                 SET active=0
                                 WHERE listingID = (?)
                                 ''', (currentlistingID,))
+
+                try:
+                    self.cur.execute('''
+                                    UPDATE coupons
+                                    SET active=0
+                                    WHERE usability = (?)
+                                    ''',(currentlistingID,))
+                except:
+                    pass
