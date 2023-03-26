@@ -19,6 +19,7 @@ class viewBasket(QDialog):
         self.updatepreferences()
         self.updatesummary()
 
+        self.applydiscount.clicked.connect(self.itemdiscount)
         self.viewitem.clicked.connect(self.gotoitem)
         self.remitem.clicked.connect(self.removeitem)
         self.clearbask.clicked.connect(self.clearbasket)
@@ -32,9 +33,10 @@ class viewBasket(QDialog):
         else:
             self.app.callMainWindow(self.userID)
 
+
     def updatesummary(self):
         self.cur.execute('SELECT * FROM basket WHERE purchased = 0')
-        basket = self.cur.fetchall()
+        self.basket = self.cur.fetchall()
 
         itemsno = 0
         btotal = 0
@@ -46,7 +48,7 @@ class viewBasket(QDialog):
 
         locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
 
-        for i in basket:
+        for i in self.basket:
             itemsno += i[3]
 
             self.cur.execute('SELECT price FROM listings WHERE listingID = ?',(i[2],))
@@ -58,6 +60,37 @@ class viewBasket(QDialog):
                              + "\nBasket total: " + str(locale.currency(btotal, grouping=True))
                              + "\nNon VAT total: " + str(locale.currency((0.8 * btotal), grouping=True))
                              + "\nPostage to: " + str(postcode))
+
+    def itemdiscount(self):
+        discount_code = self.discountfield.text()
+
+        self.cur.execute('SELECT listingID FROM basket WHERE purchased = 0 AND USERID = ?', (self.userID,))
+        listingIDs = [row[0] for row in self.cur.fetchall()]
+
+        print(listingIDs)
+
+        # make the discount code case and space insensitive by converting it to uppercase with no spaces
+        discount_code = discount_code.upper().replace(' ', '')
+
+        self.cur.execute("SELECT * FROM coupons WHERE upper(trim(coupontag)) = ?", (discount_code,))
+        coupon = self.cur.fetchone()
+
+        print(coupon)
+
+        if coupon is None:
+            print("This discount code does not exist")
+        else:
+            usability = coupon[3]
+            if usability == 'User':
+                user_id = coupon[4]
+                print("The user ID for code {} is {}".format(discount_code, user_id))
+            else:
+                usability = int(usability)
+                if usability in listingIDs:
+                    discount = coupon[2]
+                    print("The discount for code {} is {}".format(discount_code, discount))
+                else:
+                    print("This discount code is invalid for your items")
 
     def fetchlistingID(self):
         row = self.btable.currentRow()
