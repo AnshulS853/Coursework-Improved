@@ -25,12 +25,16 @@ class creationScreen(QDialog):
 
             self.couponfield.setEnabled(False)
             self.couponfield.setText("N/A (Auction)")
+            self.discountfield.setEnabled(False)
+            self.discountfield.setText("N/A (Auction)")
         else:
             self.quantityfield.setEnabled(True)
             self.itemquantity = self.quantityfield.text()
 
             self.couponfield.setEnabled(True)
             self.couponfield.setText("No Coupon (Current)")
+            self.discountfield.setEnabled(True)
+            self.discountfield.setText("No % Discount")
             try:
                 self.itemquantity = int(self.itemquantity)
                 if self.itemquantity < 0:
@@ -129,6 +133,9 @@ class creationScreen(QDialog):
         return
 
     def createwindow(self):
+        discount = self.discountfield.text()
+        coupon = self.couponfield.text()
+
         selectoptions = [self.category.currentText()] * 6
         selectoptions[2] = self.condition.currentText()
         selectoptions[3] = self.format.currentText()
@@ -142,6 +149,15 @@ class creationScreen(QDialog):
 
         if len(self.title.text()) >= 30:
             self.characterlimit("title", "30")
+
+        try:
+            discount = float(discount)
+            if (coupon != "No Coupon (Current)") and (not discount or discount <= 0 or discount == "No % Discount"):
+                return
+        except:
+            self.error.setText("Please enter a valid % discount")
+            return
+
 
         if (self.acceptconditions() and self.checkprice(self.pricefield.text()) and
                 self.checkduration(self.durationfield.text()) and self.selectoption(selectoptions) and
@@ -172,14 +188,18 @@ class creationScreen(QDialog):
             #                 VALUES (?,?,?,1)
             #                 ''',(coupon,self.itemquantity,listingID))
 
-            coupon_text = self.couponfield.text()
-            if coupon_text not in {"No Coupon (Current)", ""}:
-                coupon = str(coupon_text)
-                data = [(coupon, self.itemquantity, listingID)]
+            if coupon not in {"No Coupon (Current)", ""}:
+                coupon = str(coupon)
+                data = [(coupon, self.itemquantity, listingID, discount, self.userID)]
                 cur.executemany('''
-                    INSERT INTO coupons 
-                    (coupontag,quantity,usability,active)
-                    VALUES (?,?,?,1)
+                            INSERT INTO coupons
+                            (coupontag,
+                            quantity,
+                            usability,
+                            discount,
+                            userID,
+                            active)
+                            VALUES (?,?,?,?,?,1)
                     ''', data)
 
             conn.close()
