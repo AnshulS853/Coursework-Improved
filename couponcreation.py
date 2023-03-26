@@ -62,7 +62,7 @@ class couponCreation(QDialog):
         try:
             quantity = int(quantity_text)
             discount = float(discount_text)
-            if (discount <= 0) or (quantity<=0):
+            if (discount <= 0) or (quantity <= 0):
                 return
 
             self.cur.execute('''
