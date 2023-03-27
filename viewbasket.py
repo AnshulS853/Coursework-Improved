@@ -72,64 +72,118 @@ class viewBasket(QDialog):
 
         self.summary.setText(summary)
 
+    # def itemdiscount(self):
+    #     discount_code = self.discountfield.text()
+    #
+    #     self.cur.execute('SELECT listingID FROM basket WHERE purchased = 0 AND USERID = ?', (self.userID,))
+    #     listingIDs = [row[0] for row in self.cur.fetchall()]
+    #
+    #     # make the discount code case and space insensitive by converting it to uppercase with no spaces
+    #     discount_code = discount_code.upper().replace(' ', '')
+    #
+    #     self.cur.execute("SELECT * FROM coupons WHERE upper(trim(coupontag)) = ?", (discount_code,))
+    #     coupon = self.cur.fetchone()
+    #
+    #     locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
+    #
+    #     if coupon is None:
+    #         self.error.setText("This discount code does not exist")
+    #     else:
+    #         usability = coupon[3]
+    #         if usability == 'User':
+    #             coupon_userID = coupon[5]
+    #             self.cur.execute('SELECT listingID FROM listings WHERE sellerID = ?',(coupon_userID,))
+    #             coupon_listingIDs = [row[0] for row in self.cur.fetchall()]
+    #
+    #             coupon_basket_listingIDs = (set(listingIDs).intersection(set(coupon_listingIDs)))
+    #
+    #             totalprice = 0
+    #
+    #             for i in coupon_basket_listingIDs:
+    #                 self.cur.execute('SELECT price FROM listings WHERE listingID = ?', (i,))
+    #                 price = self.cur.fetchone()[0]
+    #                 self.cur.execute('SELECT quantity FROM basket WHERE listingID = ? AND purchased = 0 AND userID = ?',(i,self.userID))
+    #                 quantity = self.cur.fetchone()[0]
+    #
+    #                 price = (locale.atof(price[1:])) * quantity
+    #
+    #                 totalprice += price
+    #
+    #             discount = coupon[4]
+    #             discountedprice = (discount / 100) * (totalprice)
+    #             savings = locale.currency(totalprice - discountedprice)
+    #
+    #             self.updatesummary(discountedprice, savings)
+    #         else:
+    #             usability = int(usability)
+    #             if usability in listingIDs:
+    #                 discount = coupon[4]
+    #                 self.cur.execute('SELECT price FROM listings WHERE listingID = ?', (usability,))
+    #                 price = self.cur.fetchone()[0]
+    #                 self.cur.execute('SELECT quantity FROM basket WHERE listingID = ? AND purchased = 0 AND userID = ?',(usability,self.userID))
+    #                 quantity = self.cur.fetchone()[0]
+    #
+    #                 price = (locale.atof(price[1:]))*quantity
+    #                 discountedprice = (discount/100)*(price)
+    #                 savings = locale.currency(price - discountedprice)
+    #
+    #                 self.updatesummary(discountedprice, savings)
+    #             else:
+    #                 self.error.setText("This discount code is invalid for your items")
+
     def itemdiscount(self):
-        discount_code = self.discountfield.text()
-
-        self.cur.execute('SELECT listingID FROM basket WHERE purchased = 0 AND USERID = ?', (self.userID,))
-        listingIDs = [row[0] for row in self.cur.fetchall()]
-
-        # make the discount code case and space insensitive by converting it to uppercase with no spaces
-        discount_code = discount_code.upper().replace(' ', '')
-
-        self.cur.execute("SELECT * FROM coupons WHERE upper(trim(coupontag)) = ?", (discount_code,))
-        coupon = self.cur.fetchone()
-
         locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
+        discount_code = self.discountfield.text().upper().replace(' ', '')
 
-        if coupon is None:
+        # Retrieve the coupon from the database if it hasn't been retrieved before
+        if not hasattr(self, 'coupon') or self.coupon[0] != discount_code:
+            self.cur.execute("SELECT * FROM coupons WHERE upper(trim(coupontag)) = ?", (discount_code,))
+            self.coupon = self.cur.fetchone()
+
+        if self.coupon is None:
             self.error.setText("This discount code does not exist")
         else:
-            usability = coupon[3]
+            usability = self.coupon[3]
             if usability == 'User':
-                coupon_userID = coupon[5]
-                self.cur.execute('SELECT listingID FROM listings WHERE sellerID = ?',(coupon_userID,))
-                coupon_listingIDs = [row[0] for row in self.cur.fetchall()]
+                coupon_userID = self.coupon[5]
+                self.cur.execute('SELECT listingID, price FROM listings WHERE sellerID = ?', (coupon_userID,))
+                listing_prices = dict(self.cur.fetchall())
 
-                coupon_basket_listingIDs = (set(listingIDs).intersection(set(coupon_listingIDs)))
-
+                coupon_basket_listingIDs = set()
                 totalprice = 0
 
-                for i in coupon_basket_listingIDs:
-                    self.cur.execute('SELECT price FROM listings WHERE listingID = ?', (i,))
-                    price = self.cur.fetchone()[0]
-                    self.cur.execute('SELECT quantity FROM basket WHERE listingID = ? AND purchased = 0 AND userID = ?',(i,self.userID))
-                    quantity = self.cur.fetchone()[0]
+                self.cur.execute(
+                    'SELECT basket.listingID, basket.quantity FROM basket JOIN listings ON basket.listingID = listings.listingID WHERE basket.purchased = 0 AND basket.userID = ?',
+                    (self.userID,))
+                for row in self.cur.fetchall():
+                    listingID, quantity = row
+                    if listingID in listing_prices:
+                        price = listing_prices[listingID]
+                        price = (locale.atof(price[1:]))
+                        totalprice += price * quantity
+                        coupon_basket_listingIDs.add(listingID)
 
-                    price = (locale.atof(price[1:])) * quantity
-
-                    totalprice += price
-
-                discount = coupon[4]
-                discountedprice = (discount / 100) * (totalprice)
+                discount = self.coupon[4]
+                discounted_prices = [(locale.atof((listing_prices[listingID])[1:])) * (1 - discount / 100) for listingID in
+                                     coupon_basket_listingIDs]
+                discountedprice = sum(discounted_prices)
                 savings = locale.currency(totalprice - discountedprice)
 
                 self.updatesummary(discountedprice, savings)
             else:
                 usability = int(usability)
-                if usability in listingIDs:
-                    discount = coupon[4]
-                    self.cur.execute('SELECT price FROM listings WHERE listingID = ?', (usability,))
-                    price = self.cur.fetchone()[0]
-                    self.cur.execute('SELECT quantity FROM basket WHERE listingID = ? AND purchased = 0 AND userID = ?',(usability,self.userID))
-                    quantity = self.cur.fetchone()[0]
-
-                    price = (locale.atof(price[1:]))*quantity
-                    discountedprice = (discount/100)*(price)
-                    savings = locale.currency(price - discountedprice)
-
-                    self.updatesummary(discountedprice, savings)
-                else:
+                self.cur.execute(
+                    'SELECT listings.price, basket.quantity FROM listings JOIN basket USING (listingID) WHERE listings.listingID = ? AND basket.purchased = 0 AND basket.userID = ?',
+                    (usability, self.userID))
+                row = self.cur.fetchone()
+                if row is None:
                     self.error.setText("This discount code is invalid for your items")
+                else:
+                    price, quantity = row
+                    price = (locale.atof(price[1:]))
+                    discountedprice = float(price) * int(quantity) * (1 - self.coupon[4] / 100)
+                    savings = locale.currency(price * quantity - discountedprice)
+                    self.updatesummary(discountedprice, savings)
 
     def fetchlistingID(self):
         row = self.btable.currentRow()
