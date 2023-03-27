@@ -135,13 +135,13 @@ class viewBasket(QDialog):
         locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
         discount_code = self.discountfield.text().upper().replace(' ', '')
 
-        # Retrieve the coupon from the database if it hasn't been retrieved before
         if not hasattr(self, 'coupon') or self.coupon[0] != discount_code:
             self.cur.execute("SELECT * FROM coupons WHERE upper(trim(coupontag)) = ?", (discount_code,))
             self.coupon = self.cur.fetchone()
 
         if self.coupon is None:
             self.error.setText("This discount code does not exist")
+            self.updatesummary()
         else:
             usability = self.coupon[3]
             if usability == 'User':
@@ -152,9 +152,13 @@ class viewBasket(QDialog):
                 coupon_basket_listingIDs = set()
                 totalprice = 0
 
-                self.cur.execute(
-                    'SELECT basket.listingID, basket.quantity FROM basket JOIN listings ON basket.listingID = listings.listingID WHERE basket.purchased = 0 AND basket.userID = ?',
-                    (self.userID,))
+                self.cur.execute('''
+                                SELECT basket.listingID, basket.quantity 
+                                FROM basket JOIN listings 
+                                ON basket.listingID = listings.listingID 
+                                WHERE basket.purchased = 0 AND basket.userID = ?
+                                ''',(self.userID,))
+
                 for row in self.cur.fetchall():
                     listingID, quantity = row
                     if listingID in listing_prices:
@@ -178,6 +182,7 @@ class viewBasket(QDialog):
                 row = self.cur.fetchone()
                 if row is None:
                     self.error.setText("This discount code is invalid for your items")
+                    self.updatesummary()
                 else:
                     price, quantity = row
                     price = (locale.atof(price[1:]))
