@@ -16,6 +16,9 @@ class viewBasket(QDialog):
         self.conn = sqlite3.connect("auc_database.db", isolation_level=None)
         self.cur = self.conn.cursor()
 
+        # self.coupon = None
+        # self.couponquantity = 0
+
         self.updatepreferences()
         self.updatesummary()
 
@@ -35,8 +38,8 @@ class viewBasket(QDialog):
 
 
     def updatesummary(self,discountedprice=None,savings=None):
-        discountedprice = discountedprice
-        savings = savings
+        dprice = discountedprice
+        saved = savings
 
         self.cur.execute('SELECT * FROM basket WHERE purchased = 0')
         self.basket = self.cur.fetchall()
@@ -65,10 +68,10 @@ class viewBasket(QDialog):
                    + "\nBasket total: " + str(locale.currency(btotal, grouping=True))
                    )
 
-        if savings and discountedprice:
+        if saved and dprice:
             summary = (str(summary) + "\n"
-                       + "\nSavings: -" + str(savings)
-                       + "\nFinal Total: " + str(locale.currency((btotal-discountedprice), grouping=True)))
+                       + "\nSavings: -" + str(saved)
+                       + "\nFinal Total: " + str(locale.currency(dprice, grouping=True)))
 
         self.summary.setText(summary)
 
@@ -162,6 +165,7 @@ class viewBasket(QDialog):
                 for row in self.cur.fetchall():
                     listingID, quantity = row
                     if listingID in listing_prices:
+                        # self.couponquantity += quantity
                         price = listing_prices[listingID]
                         price = (locale.atof(price[1:]))
                         totalprice += price * quantity
@@ -177,7 +181,9 @@ class viewBasket(QDialog):
             else:
                 usability = int(usability)
                 self.cur.execute(
-                    'SELECT listings.price, basket.quantity FROM listings JOIN basket USING (listingID) WHERE listings.listingID = ? AND basket.purchased = 0 AND basket.userID = ?',
+                    '''SELECT listings.price, basket.quantity 
+                    FROM listings JOIN basket USING (listingID) 
+                    WHERE listings.listingID = ? AND basket.purchased = 0 AND basket.userID = ?''',
                     (usability, self.userID))
                 row = self.cur.fetchone()
                 if row is None:
@@ -285,13 +291,32 @@ class viewBasket(QDialog):
         s_buyerAddress = f"{first_part}\n{second_part}"
         # print the concatenated address
 
-        self.cur.execute('''
-                        INSERT INTO invoice
-                        (buyerID,
-                        purchasedate,
-                        buyeraddress)
-                        VALUES (?,DATE('now'),?)
-                        ''',(self.userID,str(s_buyerAddress)))
+        print(self.couponquantity)
+
+        if hasattr(self, 'coupon'):
+            self.cur.execute('''
+                            INSERT INTO invoice
+                            (buyerID,
+                            couponID,
+                            purchasedate,
+                            buyeraddress)
+                            VALUES (?,?,DATE('now'),?)
+                            ''',(self.coupon[1],self.userID,str(s_buyerAddress)))
+
+            # self.cur.execute('''
+            #                 UPDATE coupons
+            #                 SET quantity = quantity - ?
+            #                 WHERE couponID = ?
+            #                 ''',(int(self.couponquantity),self.coupon[0]))
+        else:
+            self.cur.execute('''
+                            INSERT INTO invoice
+                            (buyerID,
+                            purchasedate,
+                            buyeraddress)
+                            VALUES (?,DATE('now'),?)
+                            ''',(self.userID,str(s_buyerAddress)))
+
         invoiceID = self.cur.lastrowid
 
         for i in c_basket:

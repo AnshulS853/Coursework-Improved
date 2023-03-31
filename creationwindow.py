@@ -150,13 +150,14 @@ class creationScreen(QDialog):
         if len(self.title.text()) >= 30:
             self.characterlimit("title", "30")
 
-        try:
-            discount = float(discount)
-            if (coupon != "No Coupon (Current)") and (not discount or discount <= 0 or discount == "No % Discount"):
+        if coupon != "No Coupon (Current)":
+            try:
+                discount = float(discount)
+                if not discount or discount <= 0 or discount == "No % Discount":
+                    return
+            except:
+                self.error.setText("Please enter a valid % discount")
                 return
-        except:
-            self.error.setText("Please enter a valid % discount")
-            return
 
 
         if (self.acceptconditions() and self.checkprice(self.pricefield.text()) and
