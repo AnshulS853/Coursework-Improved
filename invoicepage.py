@@ -37,12 +37,84 @@ class createInvoice(QDialog):
             self.close()
             self.app.callMainWindow(self.userID)
 
-    def fetchbaskinv(self):
-        self.cur.execute('SELECT invoiceID FROM binv WHERE basketID = ?',(self.currentBasketID,))
-        self.invoiceID = self.cur.fetchone()[0]
+    # def fetchdiscounts(self):
+    #
+    #
+    # def calc_discount(self):
+    #     locale.setlocale(locale.LC_ALL, 'en_GB.UTF-8')
+    #     discount_code = self.discountfield.text().upper().replace(' ', '')
+    #
+    #     if not hasattr(self, 'coupon') or self.coupon[0] != discount_code:
+    #         self.cur.execute("SELECT * FROM coupons WHERE upper(trim(coupontag)) = ?", (discount_code,))
+    #         self.coupon = self.cur.fetchone()
+    #
+    #     if self.coupon is None:
+    #         self.error.setText("This discount code does not exist")
+    #         self.updatesummary()
+    #     else:
+    #         usability = self.coupon[3]
+    #         if usability == 'User':
+    #             coupon_userID = self.coupon[5]
+    #             self.cur.execute('SELECT listingID, price FROM listings WHERE sellerID = ?', (coupon_userID,))
+    #             listing_prices = dict(self.cur.fetchall())
+    #
+    #             coupon_basket_listingIDs = set()
+    #             totalprice = 0
+    #
+    #             self.cur.execute('''
+    #                             SELECT basket.listingID, basket.quantity
+    #                             FROM basket JOIN listings
+    #                             ON basket.listingID = listings.listingID
+    #                             WHERE basket.purchased = 0 AND basket.userID = ?
+    #                             ''',(self.userID,))
+    #
+    #             for row in self.cur.fetchall():
+    #                 listingID, quantity = row
+    #                 if listingID in listing_prices:
+    #                     # self.couponquantity += quantity
+    #                     price = listing_prices[listingID]
+    #                     price = (locale.atof(price[1:]))
+    #                     totalprice += price * quantity
+    #                     coupon_basket_listingIDs.add(listingID)
+    #
+    #             discount = self.coupon[4]
+    #             discounted_prices = [(locale.atof((listing_prices[listingID])[1:])) * (1 - discount / 100) for listingID in
+    #                                  coupon_basket_listingIDs]
+    #             discountedprice = sum(discounted_prices)
+    #             savings = locale.currency(totalprice - discountedprice)
+    #
+    #             self.updatesummary(discountedprice, savings)
+    #         else:
+    #             usability = int(usability)
+    #             self.cur.execute(
+    #                 '''SELECT listings.price, basket.quantity
+    #                 FROM listings JOIN basket USING (listingID)
+    #                 WHERE listings.listingID = ? AND basket.purchased = 0 AND basket.userID = ?''',
+    #                 (usability, self.userID))
+    #             row = self.cur.fetchone()
+    #             if row is None:
+    #                 self.error.setText("This discount code is invalid for your items")
+    #                 self.updatesummary()
+    #             else:
+    #                 price, quantity = row
+    #                 price = (locale.atof(price[1:]))
+    #                 discountedprice = float(price) * int(quantity) * (1 - self.coupon[4] / 100)
+    #                 savings = locale.currency(price * quantity - discountedprice)
+    #                 self.updatesummary(discountedprice, savings)
 
-        self.cur.execute('SELECT basketID FROM binv WHERE invoiceID = ?',(self.invoiceID,))
+
+    # def fetchbaskinv(self):
+    #     self.cur.execute('SELECT invoiceID FROM binv WHERE basketID = ?',(self.currentBasketID,))
+    #     self.invoiceID = self.cur.fetchone()[0]
+    #
+    #     self.cur.execute('SELECT basketID FROM binv WHERE invoiceID = ?',(self.invoiceID,))
+    #     self.basketIDs = self.cur.fetchall()
+
+    def fetchbaskinv(self):
+        self.cur.execute('SELECT b.basketID FROM binv b JOIN binv i ON b.invoiceID = i.invoiceID WHERE i.basketID = ?',
+                         (self.currentBasketID,))
         self.basketIDs = self.cur.fetchall()
+        self.invoiceID = self.basketIDs[0][0]
 
     def fetchtable(self):
         tablecontents = []
