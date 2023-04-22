@@ -46,11 +46,10 @@ class creationScreen(QDialog):
                 return
 
     def gobacktomenu(self):
+        self.close()
         if self.admin:
-            self.close()
             self.app.callAdminWindow(self.userID)
         else:
-            self.close()
             self.app.callMainWindow(self.userID)
 
     def selectoption(self, selectx):
@@ -150,7 +149,7 @@ class creationScreen(QDialog):
         if len(self.title.text()) >= 30:
             self.characterlimit("title", "30")
 
-        if coupon != "No Coupon (Current)":
+        if coupon != "No Coupon (Current)" or coupon != "N/A (Auction)":
             try:
                 discount = float(discount)
                 if not discount or discount <= 0 or discount == "No % Discount":
@@ -205,9 +204,8 @@ class creationScreen(QDialog):
 
             conn.close()
 
+            self.close()
             if self.admin:
-                self.close()
                 self.app.callAdminWindow(self.userID)
             else:
-                self.close()
                 self.app.callMainWindow(self.userID)

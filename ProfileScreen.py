@@ -263,8 +263,8 @@ class FillProfileScreen(QDialog):
             return True
 
     def saveprofile(self):
-        self.firstname = string.capwords(self.firstname.text())
-        self.lastname = string.capwords(self.lastname.text())
+        self.firstname = string.capwords(self.firstnamefield.text())
+        self.lastname = string.capwords(self.lastnamefield.text())
 
         gender = str(self.gender.currentText())
 

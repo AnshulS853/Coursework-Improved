@@ -30,11 +30,10 @@ class createInvoice(QDialog):
         # self.setfields()
 
     def gobackpage(self):
+        self.close()
         if self.admin:
-            self.close()
             self.app.callAdminWindow(self.userID)
         else:
-            self.close()
             self.app.callMainWindow(self.userID)
 
     # def fetchdiscounts(self):

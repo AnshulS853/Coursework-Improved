@@ -291,8 +291,6 @@ class viewBasket(QDialog):
         s_buyerAddress = f"{first_part}\n{second_part}"
         # print the concatenated address
 
-        print(self.couponquantity)
-
         if hasattr(self, 'coupon'):
             self.cur.execute('''
                             INSERT INTO invoice

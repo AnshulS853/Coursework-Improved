@@ -83,11 +83,10 @@ class refreshLists:
 
                 self.cur.execute('''
                                 INSERT INTO invoice
-                                (couponID,
-                                buyerID,
+                                (buyerID,
                                 purchasedate,
                                 buyeraddress)
-                                VALUES (NULL,?,DATE('now'),?)
+                                VALUES (?,DATE('now'),?)
                                 ''',(result[0],s_buyerAddress))
                 invoiceID = self.cur.lastrowid
 

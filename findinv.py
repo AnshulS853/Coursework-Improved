@@ -22,13 +22,12 @@ class findInvoices(QDialog):
         self.goback.clicked.connect(self.gotomenu)
         self.view.clicked.connect(self.gotoinvoice)
         self.loadTable()
-    #
+
     def gotomenu(self):
+        self.close()
         if self.admin:
-            self.close()
             self.app.callAdminWindow(self.userID)
         else:
-            self.close()
             self.app.callMainWindow(self.userID)
 
     def fetchBasketID(self):
