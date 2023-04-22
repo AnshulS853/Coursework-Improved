@@ -75,10 +75,10 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>121</x>
+      <x>120</x>
       <y>159</y>
-      <width>47</width>
-      <height>24</height>
+      <width>60</width>
+      <height>33</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -145,10 +145,10 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>159</y>
-      <width>231</width>
-      <height>24</height>
+      <x>590</x>
+      <y>150</y>
+      <width>304</width>
+      <height>33</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -182,10 +182,10 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>360</x>
       <y>430</y>
-      <width>221</width>
-      <height>24</height>
+      <width>282</width>
+      <height>33</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -241,17 +241,18 @@ color:rgb(255, 255, 255);</string>
    <widget class="QRadioButton" name="acceptcondition">
     <property name="geometry">
      <rect>
-      <x>87</x>
-      <y>680</y>
-      <width>821</width>
-      <height>20</height>
+      <x>140</x>
+      <y>650</y>
+      <width>641</width>
+      <height>54</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;color:rgb(255, 255, 255)</string>
     </property>
     <property name="text">
-     <string>I acknowledge my payment method will be automatically charged after the duration if I win the auction</string>
+     <string>I acknowledge my payment method will be automatically charged
+after the duration if I win the auction</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_9">
@@ -259,8 +260,8 @@ color:rgb(255, 255, 255);</string>
      <rect>
       <x>120</x>
       <y>310</y>
-      <width>110</width>
-      <height>48</height>
+      <width>145</width>
+      <height>66</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -275,7 +276,7 @@ Remaining</string>
    <widget class="QLabel" name="durationfield">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>280</x>
       <y>310</y>
       <width>121</width>
       <height>71</height>
@@ -298,8 +299,8 @@ color:rgb(255, 255, 255);</string>
      <rect>
       <x>780</x>
       <y>300</y>
-      <width>85</width>
-      <height>24</height>
+      <width>112</width>
+      <height>33</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -334,9 +335,9 @@ color:rgb(255, 255, 255);</string>
    <widget class="QLabel" name="deliverylocation">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>520</x>
       <y>310</y>
-      <width>171</width>
+      <width>221</width>
       <height>61</height>
      </rect>
     </property>
