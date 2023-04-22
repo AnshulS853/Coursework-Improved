@@ -149,15 +149,23 @@ class creationScreen(QDialog):
         if len(self.title.text()) >= 30:
             self.characterlimit("title", "30")
 
-        if coupon != "No Coupon (Current)" or coupon != "N/A (Auction)":
+        # if coupon != "No Coupon (Current)":
+        #     try:
+        #         discount = float(discount)
+        #         if not discount or discount <= 0 or discount == "No % Discount":
+        #             return
+        #     except:
+        #         self.error.setText("Please enter a valid % discount")
+        #         return
+
+        if (coupon != "No Coupon (Current)") and (selectoptions[3] == "Buy Now"):
             try:
                 discount = float(discount)
-                if not discount or discount <= 0 or discount == "No % Discount":
+                if not discount or discount <= 0 or discount == 0:
                     return
             except:
                 self.error.setText("Please enter a valid % discount")
                 return
-
 
         if (self.acceptconditions() and self.checkprice(self.pricefield.text()) and
                 self.checkduration(self.durationfield.text()) and self.selectoption(selectoptions) and
@@ -188,7 +196,7 @@ class creationScreen(QDialog):
             #                 VALUES (?,?,?,1)
             #                 ''',(coupon,self.itemquantity,listingID))
 
-            if coupon not in {"No Coupon (Current)", ""}:
+            if (coupon not in {"No Coupon (Current)", ""}) and (selectoptions[3] == "Buy Now"):
                 coupon = str(coupon)
                 data = [(coupon, self.itemquantity, listingID, discount, self.userID)]
                 cur.executemany('''
