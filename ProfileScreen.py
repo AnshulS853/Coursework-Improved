@@ -106,61 +106,61 @@
 #         else:
 #             return True
 #
-#     def saveprofile(self):
-#         self.firstname = string.capwords(self.firstname.text())
-#         self.lastname = string.capwords(self.lastname.text())
-#
-#         gender = str(self.gender.currentText())
-#
-#
-#         if gender == "Male":
-#             gender = 0
-#         else:
-#             gender = 1
-#
-#         # user_info = {"firstname":self.firstname.text(),
-#         #              "lastname":self.lastname.text(),
-#         #              "email":self.email.text(),
-#         #              "dob":self.dob.date().toPyDate(),
-#         #              "gender":gender}
-#         self.validateuser()
-#
-#         email = self.email.text()
-#
-#         self.validate_email(email)
-#
-#         # filladdress = FillAddress()
-#         # widget = QtWidgets.QStackedWidget()
-#         # widget.addWidget(filladdress)
-#         # widget.setCurrentIndex(widget.currentIndex() + 1)
-#
-#         dob = self.dob.date().toPyDate()
-#
-#         if self.checkuserage(dob):
-#
-#             conn = sqlite3.connect("auc_database.db", isolation_level=None)
-#             cur = conn.cursor()
-#             cur.execute('''
-#                 UPDATE users
-#                 SET firstname=?,
-#                 lastname=?,
-#                 email=?,
-#                 dob=?,
-#                 gender=?
-#                 WHERE userID = (?)
-#             ''',(self.firstname,
-#                 self.lastname,
-#                 email,
-#                 dob,
-#                 int(gender),
-#                 self.userID
-#                 ))
-#             conn.close()
-#
-#             self.close()
-#             self.app.callAddressScreen()
-#         else:
-#             return
+    # def saveprofile(self):
+    #     self.firstname = string.capwords(self.firstname.text())
+    #     self.lastname = string.capwords(self.lastname.text())
+    #
+    #     gender = str(self.gender.currentText())
+    #
+    #
+    #     if gender == "Male":
+    #         gender = 0
+    #     else:
+    #         gender = 1
+    #
+    #     # user_info = {"firstname":self.firstname.text(),
+    #     #              "lastname":self.lastname.text(),
+    #     #              "email":self.email.text(),
+    #     #              "dob":self.dob.date().toPyDate(),
+    #     #              "gender":gender}
+    #     self.validateuser()
+    #
+    #     email = self.email.text()
+    #
+    #     self.validate_email(email)
+    #
+    #     # filladdress = FillAddress()
+    #     # widget = QtWidgets.QStackedWidget()
+    #     # widget.addWidget(filladdress)
+    #     # widget.setCurrentIndex(widget.currentIndex() + 1)
+    #
+    #     dob = self.dob.date().toPyDate()
+    #
+    #     if self.checkuserage(dob):
+    #
+    #         conn = sqlite3.connect("auc_database.db", isolation_level=None)
+    #         cur = conn.cursor()
+    #         cur.execute('''
+    #             UPDATE users
+    #             SET firstname=?,
+    #             lastname=?,
+    #             email=?,
+    #             dob=?,
+    #             gender=?
+    #             WHERE userID = (?)
+    #         ''',(self.firstname,
+    #             self.lastname,
+    #             email,
+    #             dob,
+    #             int(gender),
+    #             self.userID
+    #             ))
+    #         conn.close()
+    #
+    #         self.close()
+    #         self.app.callAddressScreen()
+    #     else:
+    #         return
 
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QDialog

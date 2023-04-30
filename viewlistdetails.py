@@ -79,33 +79,33 @@
 #         self.postcode = self.fetchdeliverylocation()
 #         self.deliverylocation.setText("Item is located near\n" + str(self.postcode))
 #
-#     def confirmpurchase(self):
-#         if self.result[5] == "Auction":
-#             self.close()
-#             self.app.callAuctionBids(self.userID,self.listingID,self.admin,self.postcode)
-#         else:
-#             self.continuepage.setText("Confirm Purchase")
-#             self.continuepage.clicked.connect(self.purchase)
-#
-#     def purchase(self):
-#         self.cur.execute('''
-#                         INSERT INTO invoice
-#                         (listingID,
-#                         buyerID,
-#                         total,
-#                         purchasedate)
-#                         VALUES (?,?,?,DATE('now'))
-#                         ''', (self.listingID, self.userID, self.result[7]))
-#         invoiceID = self.cur.lastrowid
-#
-#         self.cur.execute('''
-#                         UPDATE listings
-#                         SET active=0
-#                         WHERE listingID = (?)
-#                         ''', (self.listingID,))
-#
-#         self.close()
-#         self.app.callCreateInvoice(self.listingID,self.userID,invoiceID,self.admin)
+    # def confirmpurchase(self):
+    #     if self.result[5] == "Auction":
+    #         self.close()
+    #         self.app.callAuctionBids(self.userID,self.listingID,self.admin,self.postcode)
+    #     else:
+    #         self.continuepage.setText("Confirm Purchase")
+    #         self.continuepage.clicked.connect(self.purchase)
+    #
+    # def purchase(self):
+    #     self.cur.execute('''
+    #                     INSERT INTO invoice
+    #                     (listingID,
+    #                     buyerID,
+    #                     total,
+    #                     purchasedate)
+    #                     VALUES (?,?,?,DATE('now'))
+    #                     ''', (self.listingID, self.userID, self.result[7]))
+    #     invoiceID = self.cur.lastrowid
+    #
+    #     self.cur.execute('''
+    #                     UPDATE listings
+    #                     SET active=0
+    #                     WHERE listingID = (?)
+    #                     ''', (self.listingID,))
+    #
+    #     self.close()
+    #     self.app.callCreateInvoice(self.listingID,self.userID,invoiceID,self.admin)
 
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QDialog
